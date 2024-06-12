@@ -1,0 +1,11 @@
+.form-speciality{
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+mat-form-field{
+    width: 400px;
+}
+
+button{
+    width: 400px;
+}
