@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Register New Student</h1>
+<mat-dialog-content [formGroup]="register">
+    <div class="row">
+        <div class="col">
+            <div class="mb-2" formGroupName="student">
+                <mat-form-field>
+                    <mat-label>Select Student</mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option value="">Gender</mat-option>
+                    </mat-select>
+                    <mat-error>You must select a Gender</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Fee Register</mat-label>
+                    <input type="number" matInput formControlName="feeRegister">
+                    <mat-error>You must enter a valid Fee</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Register Year</mat-label>
+                    <input type="number" matInput formControlName="endDate">
+                    <mat-error>You must a valid Year school</mat-error>
+                    <mat-hint>Ex. 2024</mat-hint>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClose()">Close</button>&nbsp;&nbsp;
+    <button type="submit" mat-raised-button color="primary" [disabled]="!register.valid" matTooltip="save"
+        (click)="onSave()">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,59 @@
+<h1 class="mat-2" mat-dialog-title>Save New Student</h1>
+<mat-dialog-content [formGroup]="studentReq">
+    <small class="text-success mb-1">This action will save a student. After you be ablle complete by adding course details</small>
+    <div class="row">
+        <div class="col">
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="lastName">
+                    <mat-error>You must a lastName</mat-error>
+                    <mat-hint>ex. Kemajou</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="firstName">
+                    <mat-error>You must a First Name</mat-error>
+                    <mat-hint>ex. Ariane</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email">
+                    <mat-error>You must enter a valid email</mat-error>
+                    <mat-hint>ex. Kemajouariane@gmail.com</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Select Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="MALE">MALE</mat-option>
+                        <mat-option value="FEMALE">FEMALE</mat-option>
+                    </mat-select>
+                    <mat-error>You must select a Gender</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Date of Birsth</mat-label>
+                <input type="date" matInput formControlName="dateOfBirth">
+                <mat-error>You must en vaild date</mat-error>
+                <mat-hint>ex. 05/11/20001</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matTooltip="Cancel" mat-raised-button color="warn" (click)="onClose()">Cancel</button>&nbsp;&nbsp;
+    <button type="submit" mat-raised-button color="primary" [disabled]="!studentReq.valid" matTooltip="save"
+        (click)="onSave()">Save</button>
+</mat-dialog-actions>

@@ -1,11 +1,63 @@
-.form-speciality{
+.form-speciality {
+    /* border: 1px solid #ccc; */
+    padding: 20px;
+    background: #fff;
+
+
+}
+
+.form-speciality mat-form-field {
+    width: 300px;
+}
+
+.form-speciality button {
+    width: 300px;
+}
+
+.form-option {
     border: 1px solid #ccc;
     padding: 20px;
 }
-mat-form-field{
+
+.form-option mat-form-field {
+    width: 300px;
+}
+
+.form-level {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.form-level mat-form-field {
+    width: 300px;
+}
+
+.form-level button {
+    width: 300px;
+}
+
+.form-course {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.form-course mat-form-field {
+    width: 300px;
+}
+
+
+.form-course button {
+    width: 300px;
+}
+
+.form-option button {
+    width: 300px;
+}
+
+mat-form-field {
     width: 400px;
 }
 
-button{
+button {
     width: 400px;
 }

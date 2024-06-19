@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button'; 
-
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { WebsiteComponent } from './website/website.component';
     WebsiteComponent
   ],
   imports: [
+    NotifierModule,
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,0 +1,107 @@
+<div class="container">
+    <h1 class="mat-1">
+        <button mat-icon-button routerLink="../" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>
+        Students
+    </h1>
+    <!-- <div class="row mb-3">
+        <h3 class="mat-3">Filter</h3>
+        <div class="col-lg-4 col-md-4">
+            <mat-form-field>
+                <mat-label>Filter by ption</mat-label>
+                <mat-select>
+                    <mat-option>Not yet available</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <mat-form-field>
+                <mat-label>Filter by Level </mat-label>
+                <mat-select>
+                    <mat-option>Not yet available</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        </div>
+        <div class="col-lg-4 col-md-4"></div>
+    </div> -->
+    <div class="row">
+        <h3>Students</h3>
+        <div class="col-lg-12 col-md-12">
+            <div class=" d-flex justify-content-between mb-2">
+                <button matTooltip="Add new Student" (click)="onSaveStudent()" mat-icon-button color="warn"
+                    class="box-shadow"> <mat-icon>person_add</mat-icon></button>
+                <span>Student number 1</span>
+                <span>Student Femmal</span>
+                <span>Student Mal</span>
+            </div>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <!-- id -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>#</th>
+                        <td mat-cell *matCellDef="let student">{{ student.id }}</td>
+                    </ng-container>
+
+                    <!-- last -->
+                    <ng-container matColumnDef="lastName">
+                        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                        <td mat-cell *matCellDef="let student">{{ student.lastName }}</td>
+                    </ng-container>
+
+                    <!-- first -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef>First Name</th>
+                        <td mat-cell *matCellDef="let student">{{ student.firstName }}</td>
+                    </ng-container>
+
+                    <!-- email -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef>Email</th>
+                        <td mat-cell *matCellDef="let student">{{ student.email }}</td>
+                    </ng-container>
+                    <!-- dob -->
+                    <ng-container matColumnDef="dob">
+                        <th mat-header-cell *matHeaderCellDef>Birth day</th>
+                        <td mat-cell *matCellDef="let student">{{ student.dateOfBirth }}</td>
+                    </ng-container>
+                    <!-- level -->
+                    <ng-container matColumnDef="level">
+                        <th mat-header-cell *matHeaderCellDef>Level</th>
+                        <td mat-cell *matCellDef="let student">{{ student?.curentLevel }}</td>
+                    </ng-container>
+
+                    <!-- option -->
+                    <ng-container matColumnDef="option">
+                        <th mat-header-cell *matHeaderCellDef>Option</th>
+                        <td mat-cell *matCellDef="let student">{{ student?.option?.name }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef>Gender</th>
+                        <td mat-cell *matCellDef="let student">{{ student.gender}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Actions</th>
+                        <td mat-cell *matCellDef="let student">
+                            <button matTooltip="Student action"  [matMenuTriggerFor]="menu" mat-icon-button><mat-icon>more_vert</mat-icon> </button>
+                            <mat-menu #menu="matMenu">
+                                <button matTooltip="Update student" mat-menu-item (click)="onUpdate(student.id)" >
+                                    <button mat-icon-button><mat-icon>edit</mat-icon></button>
+                                </button>
+                                <button matTooltip="Register student"  mat-menu-item (click)="onRegister(student.id)" >
+                                    <button mat-icon-button><mat-icon>person_add</mat-icon></button>
+                                </button>
+                                <button matTooltip="View student profile"  mat-menu-item (click)="onProfile(student.id)" >
+                                    <button mat-icon-button><mat-icon>view</mat-icon></button>
+                                </button>
+                            </mat-menu>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

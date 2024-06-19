@@ -10,6 +10,9 @@ import { AsyncPipe, NgIf } from '@angular/common';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+LogOut() {
+throw new Error('Method not implemented.');
+}
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

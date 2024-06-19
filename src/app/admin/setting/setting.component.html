@@ -1,34 +1,113 @@
 <div class="container">
     <h1 class="mat-1">
-        <button mat-icon-button routerLink="../"> <mat-icon>arrow_back</mat-icon></button>
-        Settings
-    </h1>
-    <div class="row">
-        <div class="col-lg-6 col-md-6">
-            <div class="form-speciality">
-                <h3 class="mat-3 text-center">Add new Speciality</h3>
+        <button mat-icon-button routerLink="../admin" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>Settings</h1>
+    <div class="row mb-2">
+        <p class="text-danger">This Page help to create or setting a lot of configaration like: Adding new <span class="fw-bold">Level, Option, Speciality and Course</span></p>
+        <!-- speciality -->
+        <div class="col-lg-4 col-md-4">
+            <div class="form-speciality card">
+                <h3 class="mat-3 text-center">Add New Speciality</h3>
                 <div class="row ">
-                    <div class="col">
-                        <div class="mb-2">
-                            <mat-form-field appearance="outline">
-                                <input type="text" matInput>
+                    <div class="col" [formGroup]="specialityForm">
+                        <div class="mb-3">
+                            <mat-form-field>
+                                <input type="text" matInput formControlName="name" />
+                                <mat-label>speciality name</mat-label>
+                                <mat-error>Provide speciality name</mat-error>
+                                <mat-hint>ex. Software enginner, Comptabilite et Gestion, Genie Civil</mat-hint>
                             </mat-form-field>
                         </div>
-                        <div class="mb-2">
-                            <button mat-raised-button>add</button>
+                        <div class="">
+                            <button (click)="onSaveSpciality()" mat-raised-button color="warn" type="submit" [disabled]="!specialityForm.valid">Add New Speciality</button>
                         </div>
-                    </div>
-                    <div class="col">
-
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="col-lg-6 col-md-6">
-            <div class="form-option">
-
+        </div><!-- end speciality -->
+        <!-- option -->
+        <div class="col-lg-8 col-md-8">
+            <div class="form-option card">
+                <h3 class="mat-3 text-center">Add New Option</h3>
+                <div class="row" [formGroup]="optionForm">
+                    <div class="col">
+                        <div class="mb-3">
+                            <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="name" />
+                                <mat-label>Option name</mat-label>
+                                <mat-error>Provide option name</mat-error>
+                                <mat-hint>ex. GSI, CGE, TP, BANQUE</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col" formGroupName="speciality">
+                        <mat-form-field>
+                            <mat-label>Select Speciality</mat-label>
+                            <mat-select formControlName="id">
+                                <mat-option *ngFor="let specialty of specialitys" [value]="specialty.id" > {{ specialty.name }}</mat-option>
+                            </mat-select>
+                            <mat-error>You must select a speciality</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="">
+                        <button (click)="onSaveOption()" mat-raised-button color="warn" type="submit" [disabled]="!optionForm.valid">Add New Option</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div> <!-- End Option  -->
+    <div class="row">
+        <!-- level -->
+        <div class="col-lg-4 col-md-4">
+            <div class="form-level card">
+                <h3 class="mat-3 text-center">Add New Level</h3>
+                <div class="row ">
+                    <div class="col" [formGroup]="levelForm">
+                        <div class="mb-2">
+                            <mat-form-field appearance="outline">
+                                <input type="text" matInput formControlName="name">
+                                <mat-label>Level name</mat-label>
+                                <mat-hint>ex. Level 1, Master, Licence</mat-hint>
+                                <mat-error>Provide Level name</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-2">
+                            <button (click)="onSaveLevel()" mat-raised-button color="warn" type="submit" [disabled]="!levelForm.valid">Add New
+                                Level</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End level -->
+        </div><!-- End Level  -->
+       <!-- Course  -->
+        <div class="col-lg-8 col-md-8">
+            <div class="form-course card">
+                <h3 class="mat-3 text-center">Create New Course</h3>
+                <div class="row " [formGroup]="courseForm">
+                    <div class="col">
+                        <div class="mb-2">
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="title">
+                                <mat-label>Course name or Title</mat-label>
+                                <mat-hint>ex. Maths, Comptabilite General, Algo 1,2</mat-hint>
+                                <mat-error>Provide course title or name</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="credit" type="number">
+                                <mat-label>Course credit</mat-label>
+                                <mat-hint>ex. 1, 2, 4</mat-hint>
+                                <mat-error>Provide course title or name</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <button (click)="onSaveCourse()" mat-raised-button color="warn" type="submit" [disabled]="!courseForm.valid">Add New
+                            Course</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end Course -->
     </div>
-</div>
