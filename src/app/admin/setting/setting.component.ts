@@ -76,12 +76,13 @@ export class SettingComponent implements OnInit {
     this.levelService.saveLevel$(level).subscribe(
       (response) => {
         this.serviceNotifier.onSuccess(response.message);
-        this.specialityForm.reset();
+        this.levelForm.reset();
       },
       (error) => {
         this.serviceNotifier.onError("An error occured");
         console.error('error %d', error);
-        this.specialityForm.reset();
+        this.levelForm.reset();
+        
       }
     )
   }

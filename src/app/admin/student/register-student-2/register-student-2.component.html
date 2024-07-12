@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 class="mat-1">
+        <button mat-icon-button routerLink="student-registed-list" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>
+        Register Student
+    </h1>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="" [formGroup]="registerStudentForm">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput [value]="student.firstName" disabled>
+                                <mat-error>You must enter a valid Fee</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Fee Register</mat-label>
+                                <input type="number" matInput formControlName="feeRegister" >
+                                <mat-error>You must enter a valid Fee</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Register Year</mat-label>
+                                <input type="number" matInput formControlName="endDate" >
+                                <mat-error>You must a valid Year school</mat-error>
+                                <mat-hint>Ex. 2024</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button mat-flat-button color="primary" [disabled]="!registerStudentForm.valid" (click)="onSave()">save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

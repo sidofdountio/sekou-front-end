@@ -40,7 +40,7 @@
                     <!-- dob -->
                     <ng-container matColumnDef="stardDate">
                         <th mat-header-cell *matHeaderCellDef>Year</th>
-                        <td mat-cell *matCellDef="let register">{{ register.stardDate }}</td>
+                        <td mat-cell *matCellDef="let register">{{ register.startDate }}-{{ register.endDate }}</td>
                     </ng-container>
                     <!-- level -->
                     <ng-container matColumnDef="level">
@@ -61,7 +61,7 @@
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let student">
                             <button matTooltip="Student action" [matMenuTriggerFor]="menu"
-                                mat-icon-button>tree_dot</button>
+                                mat-icon-button>more_vert</button>
                             <mat-menu #menu="matMenu">
                                 <button matTooltip="Update student" mat-menu-item (click)="onUpdate(student.id)">
                                     <button mat-icon-button><mat-icon>edit</mat-icon></button>

@@ -9,6 +9,7 @@ import { StudentRegisteListComponent } from './students/student-registe-list/stu
 import { StudentPrfileComponent } from './students/student-prfile/student-prfile.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { RegisteStudentComponent } from './students/registe-student/registe-student.component';
+import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
         },
         {
           path: 'student-registed/:id',
-          component: RegisteStudentComponent,
+          component: RegisterStudent2Component,
           title: 'student-registed'
         },
         {

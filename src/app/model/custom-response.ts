@@ -2,6 +2,7 @@ import { Course } from "./course";
 import { CourseEnrollment } from "./course-enrollment";
 import { Level } from "./level";
 import { Option } from "./option";
+import { Register } from "./register";
 import { Speciality } from "./speciality";
 import { Student } from "./student";
 
@@ -16,6 +17,7 @@ export interface CustomResponse {
         speciality?:Speciality,specialities?:Speciality[],
         option?:Option, options:Option[],
         coursesEnrollments?: CourseEnrollment[],coursesEnrollment?: CourseEnrollment,
-        stutdent?:Student,students?:Student[]
+        student?:Student,students?:Student[],
+        register?:Register,registers?:Register[]
     };
 }

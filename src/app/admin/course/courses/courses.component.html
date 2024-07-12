@@ -7,7 +7,7 @@
         <h3 class="mat-3">Filter</h3>
         <div class="col-lg-4 col-md-4">
             <mat-form-field>
-                <mat-label>Filter by ption</mat-label>
+                <mat-label>Filter by option</mat-label>
                 <mat-select>
                     <mat-option>Not yet available</mat-option>
                 </mat-select>
@@ -34,7 +34,7 @@
                 <table mat-table [dataSource]="dataSource" matSort>
                     <!-- tile -->
                     <ng-container matColumnDef="title">
-                        <th mat-header-cell *matHeaderCellDef>Title</th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header >Title</th>
                         <td mat-cell *matCellDef="let courseEnrollment">{{ courseEnrollment.course.title }}</td>
                     </ng-container>
                     <!-- level -->

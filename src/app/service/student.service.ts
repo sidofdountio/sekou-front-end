@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { StudentDto } from '../model/student-dto';
 import { CustomResponse } from '../model/custom-response';
+import { StudentRequest } from '../model/student-request';
 
 
 @Injectable({
@@ -30,7 +31,7 @@ export class StudentService {
         catchError(this.handlerError)
       );
 
-  saveStudent$ = (student: StudentDto) => <Observable<CustomResponse>>
+  saveStudent$ = (student: StudentRequest) => <Observable<CustomResponse>>
     this.http.post<CustomResponse>(`${this.URL}`, student)
       .pipe(
         tap(console.log),

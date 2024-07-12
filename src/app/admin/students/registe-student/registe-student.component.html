@@ -6,9 +6,10 @@
                 <mat-form-field>
                     <mat-label>Select Student</mat-label>
                     <mat-select formControlName="id">
-                        <mat-option value="">Gender</mat-option>
+                        <mat-option *ngFor="let student of students"
+                            [value]="student.id">{{student.lastName}}</mat-option>
                     </mat-select>
-                    <mat-error>You must select a Gender</mat-error>
+                    <mat-error>You must select a student</mat-error>
                 </mat-form-field>
             </div>
             <div class="mb-2">
@@ -28,7 +29,6 @@
                     <mat-hint>Ex. 2024</mat-hint>
                 </mat-form-field>
             </div>
-
         </div>
     </div>
 

@@ -40,7 +40,8 @@ import { RegisteStudentComponent } from './students/registe-student/registe-stud
 import { StudentRegisteListComponent } from './students/student-registe-list/student-registe-list.component';
 import { StudentTreeComponent } from './students/student-tree/student-tree.component';
 import { AddStudentComponent } from './students/add-student/add-student.component';
-import {MatCardModule} from '@angular/material/card'; 
+import {MatCardModule} from '@angular/material/card';
+import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component'; 
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import {MatCardModule} from '@angular/material/card';
     RegisteStudentComponent,
     StudentRegisteListComponent,
     StudentTreeComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    RegisterStudent2Component
   ],
   imports: [
     MatCardModule,

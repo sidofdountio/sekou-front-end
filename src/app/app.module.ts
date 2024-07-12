@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WebsiteComponent } from './website/website.component';
+import { MessageModaleComponent } from './util/message-modale/message-modale.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    WebsiteComponent
+    WebsiteComponent,
+    MessageModaleComponent
   ],
   imports: [
     NotifierModule,

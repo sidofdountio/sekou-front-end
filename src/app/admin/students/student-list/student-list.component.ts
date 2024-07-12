@@ -76,11 +76,11 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     this.studentService.saveStudent$(student).subscribe(
       response=>{
         this.notificationService.onSuccess(response.message);
-        this.notificationService.onDefault("Next Step finish add student details and fee.");
+        this.notificationService.onWarning("Next Step finish add student details and fee.");
         this.getStudents();
       } ,
       error=>{
-        this.notificationService.onError("Student List can' be fetch")
+        this.notificationService.onWarning("Can't save action ")
       }
     )
   }

@@ -6,7 +6,7 @@
         <!-- speciality -->
         <div class="col-lg-4 col-md-4">
             <div class="form-speciality card">
-                <h3 class="mat-3 text-center">Add New Speciality</h3>
+                <h3 class="mat-3 text-center">Add new speciality</h3>
                 <div class="row ">
                     <div class="col" [formGroup]="specialityForm">
                         <div class="mb-3">
@@ -14,11 +14,11 @@
                                 <input type="text" matInput formControlName="name" />
                                 <mat-label>speciality name</mat-label>
                                 <mat-error>Provide speciality name</mat-error>
-                                <mat-hint>ex. Software enginner, Comptabilite et Gestion, Genie Civil</mat-hint>
+                                <mat-hint>ex.Software enginner, Genie Civil</mat-hint>
                             </mat-form-field>
                         </div>
                         <div class="">
-                            <button (click)="onSaveSpciality()" mat-raised-button color="warn" type="submit" [disabled]="!specialityForm.valid">Add New Speciality</button>
+                            <button (click)="onSaveSpciality()" mat-raised-button color="accent" type="submit" [disabled]="!specialityForm.valid">Add New Speciality</button>
                         </div>
                     </div>
                 </div>
@@ -27,10 +27,10 @@
         <!-- option -->
         <div class="col-lg-8 col-md-8">
             <div class="form-option card">
-                <h3 class="mat-3 text-center">Add New Option</h3>
+                <h3 class="mat-3 text-center">Add oew option</h3>
                 <div class="row" [formGroup]="optionForm">
                     <div class="col">
-                        <div class="mb-3">
+                        <div class="mb-3 ">
                             <mat-form-field appearance="outline">
                                 <input type="text" matInput formControlName="name" />
                                 <mat-label>Option name</mat-label>
@@ -49,7 +49,7 @@
                         </mat-form-field>
                     </div>
                     <div class="">
-                        <button (click)="onSaveOption()" mat-raised-button color="warn" type="submit" [disabled]="!optionForm.valid">Add New Option</button>
+                        <button (click)="onSaveOption()" mat-raised-button color="accent" type="submit" [disabled]="!optionForm.valid">Add New Option</button>
                     </div>
                 </div>
             </div>

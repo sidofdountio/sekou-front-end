@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Register } from 'src/app/model/register';
 import { RegisteStudentComponent } from '../registe-student/registe-student.component';
+import { NotificationService } from 'src/app/service/notification.service';
+import { RegisterService } from 'src/app/service/register.service';
 
 @Component({
   selector: 'app-student-registe-list',
@@ -21,15 +23,28 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(private dialog: MatDialog, private router: Router, private registerService: RegisterService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-
+    this.getRegistedStudent();
   }
+
 
   ngAfterViewInit(): void {
-
+    this.dataSource.sort = this.sort;
+    this,this.dataSource.paginator = this.paginator;
   }
+
+  getRegistedStudent():void{
+    this.registerService.registers$.subscribe(
+      response=>{
+        this.dataSource.data = response.data.registers;
+        this.notificationService.onDefault(response.message);
+      }
+    )
+  }
+
+
 
   OnRegister() {
     let register: Register={
@@ -44,8 +59,18 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
         lastName: '',
         email: '',
         dateOfBirth: undefined,
-        level: undefined,
-        option: undefined
+        level: {
+          id: 0,
+          name: ''
+        },
+        option: {
+          id: 0,
+          name: '',
+          speciality: {
+            id: 0,
+            name: ''
+          }
+        }
       }
     };
     const dialogConf = new MatDialogConfig();
@@ -54,14 +79,9 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     dialogConf.disableClose = true;
     dialogConf.data = register;
     this.dialog.open(RegisteStudentComponent, dialogConf).afterClosed()
-      .subscribe(
-        (response) => {
-          console.log(response);
-          this.saveRegistration();
-        }
-      );
-
+      .subscribe((response) => {this.saveRegistration();});
   }
+  
   saveRegistration() {
 
   }
