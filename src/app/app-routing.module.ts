@@ -2,9 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WebsiteComponent } from './website/website.component';
+import {MobileComponent} from "./mobile/mobile.component";
 
 const routes: Routes = [
-  
+  {
+    component: MobileComponent,
+    path: 'online-registration',
+    title: 'online-registration'
+
+  },
   {
     path: 'home',
     component: WebsiteComponent

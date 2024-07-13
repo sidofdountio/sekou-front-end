@@ -10,6 +10,11 @@ import { Gender } from 'src/app/model/enumeration/gender';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { AppState } from 'src/app/model/appState';
+import { CustomResponse } from 'src/app/model/custom-response';
+import { DataState } from 'src/app/model/enumeration/dataState';
+import {BehaviorSubject, Observable , of} from 'rxjs';
+import {  map, startWith, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-list',
@@ -18,6 +23,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class StudentListComponent implements OnInit, AfterViewInit {
 
+  // Object
   students: Student[] = [{
     id: 0,
     firstName: 'Jasme',
@@ -28,8 +34,11 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     option: undefined,
     gender: Gender.MALE
   }]
-
+  readonly DataSate = DataState;
+  private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Student>([]);
+  appState$: Observable<AppState<CustomResponse>>;
+
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'level', 'option', 'gender', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -37,24 +46,25 @@ export class StudentListComponent implements OnInit, AfterViewInit {
   constructor(private dialog: MatDialog, private router: Router,private studentService:StudentService, private notificationService:NotificationService) { }
 
   ngOnInit(): void {
-    this.getStudents();
+    this.appState$ = this.studentService.students$.pipe(
+      map(response => {
+        this.dataSubject.next(response);
+        this.dataSource.data=response.data.students;
+        return { dataState: DataState.LOADED_STATE, appData: response }
+      }),
+      startWith({ dataState: DataState.LOADING_STATE }),
+      catchError((error: string) => {
+        return of({ dataState: DataState.ERROR_STATE, error })
+      })
+    );
+
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort =this.sort;
   }
-  getStudents():void{
-    this.studentService.students$.subscribe(
-      response=>{
-        this.dataSource.data = response.data.students;
-        this.notificationService.onDefault(response.message);
-      } ,
-      error=>{
-        this.notificationService.onError("Student List can' be fetch")
-      }
-    )
-  }
+
 
   onSaveStudent() {
     let student: StudentRequest;
@@ -66,23 +76,27 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     this.dialog.open(AddStudentComponent, dialogConf).afterClosed()
       .subscribe(
         (response: StudentRequest) => {
-          console.log(response);
-          this.saveStudent(response);
+
+          if(response != undefined){
+            this.saveStudent(response);
+          }
         }
       );
   }
 
   saveStudent(student:StudentRequest) {
     this.studentService.saveStudent$(student).subscribe(
-      response=>{
-        this.notificationService.onSuccess(response.message);
-        this.notificationService.onWarning("Next Step finish add student details and fee.");
-        this.getStudents();
-      } ,
-      error=>{
-        this.notificationService.onWarning("Can't save action ")
+      {
+        next: (response)=>{
+          this.notificationService.onSuccess(response.message);
+            this.notificationService.onWarning("Next Step finish add student details and fee.");
+            this.appState$.subscribe();
+        },
+        error: (error: any)=>{
+          this.notificationService.onWarning("Can't save action ");
+        }
       }
-    )
+    );
   }
 /**
  * view student profile
@@ -93,17 +107,18 @@ export class StudentListComponent implements OnInit, AfterViewInit {
   }
   /**
    * register a student
-   * @param id 
+   * @param id
    */
   onRegister(id: any) {
     this.router.navigate(["admin/student-registed/",id]);
   }
 /**
  * update a student
- * @param id 
+ * @param id
  */
   onUpdate(id: any) {
     this.router.navigate(["admin/student-edit/",id]);
   }
 
+  protected readonly DataState = DataState;
 }

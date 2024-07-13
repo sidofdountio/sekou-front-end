@@ -1,10 +1,12 @@
-import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StudentRequest } from 'src/app/model/student-request';
 import { StudentService } from 'src/app/service/student.service';
 
+/**
+ * Form to add new student.
+ */
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -18,7 +20,8 @@ export class AddStudentComponent {
     gender:['',[Validators.required]],
     dateOfBirth:['',[Validators.required]]
   })
-  constructor(private fbuilde: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: StudentRequest, public dialogRef: MatDialogRef<AddStudentComponent>, private stdeuntService: StudentService) { }
+  constructor(private fbuilde: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: StudentRequest,
+   public dialogRef: MatDialogRef<AddStudentComponent>, private stdeuntService: StudentService) { }
 
   onSave() {
     let student: StudentRequest = {

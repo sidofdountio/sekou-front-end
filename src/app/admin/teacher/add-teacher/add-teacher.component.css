@@ -1,0 +1,14 @@
+mat-form-field{
+    width: 300px;
+}
+
+.form{
+    padding: 14px;
+    box-shadow: 3px 3px 3px #333;
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+button{
+ border-radius: 20px;
+}

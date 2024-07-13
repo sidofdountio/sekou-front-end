@@ -1,0 +1,38 @@
+
+.carousel-indicators [data-mdb-target] {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+i{
+  color: #333333;
+  font-weight: bold;
+}
+.mobile-card{
+  box-shadow: 5px 5px 5px #333333;
+  /*border-radius: 15px;*/
+  background: #ffffff;
+  border: 1px solid #eee;
+  width: 150px;
+  height: 100px;
+}
+
+.mobile-card:hover{
+  border: 1px solid green;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+/* Map settings */
+.map-container {
+  height: 495px;
+  position: relative;
+}
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

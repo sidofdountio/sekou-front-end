@@ -1,0 +1,16 @@
+.form {
+    box-shadow: 5px 5px 5px #333;
+    margin-left: 200px;
+    width: 700px;
+    border-radius: 15px;
+    padding: 8px 8px 8px 8px;
+    border: 1px solid #eee;
+}
+mat-form-field{
+    width: 300px;
+    color: blue;
+}
+
+button{
+    border-radius: 20px;
+   }

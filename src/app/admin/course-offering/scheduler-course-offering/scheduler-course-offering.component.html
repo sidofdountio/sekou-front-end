@@ -1,0 +1,87 @@
+<div class="container">
+    <h1 class="mat-1">
+        <button mat-icon-button routerLink="../" matTooltip="Go back">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        Course Offering
+    </h1>
+    <div class="row p-4">
+        <div class="d-flex justify-content-center form" [formGroup]="courseOfferingForm">
+            <!-- start col -->
+            <div class="col">
+                <div class="mb-2" formGroupName="level">
+                    <mat-form-field >
+                        <mat-label>Select Level</mat-label>
+                        <mat-select formControlName="id" >
+                            <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2" formGroupName="course">
+                    <mat-form-field>
+                        <mat-label>Select Course</mat-label>
+                        <mat-select formControlName="id">
+                            <mat-option *ngFor="let course of courses" [value]="course.id">{{course.title}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>Select Day</mat-label>
+                        <mat-select formControlName="dayOfWeek">
+                            <mat-option value="1">Monday</mat-option>
+                            <mat-option value="2">Tuesday</mat-option>
+                            <mat-option value="3">Wednesday</mat-option>
+                            <mat-option value="4">Thursday</mat-option>
+                            <mat-option value="5">Friday</mat-option>
+                            <mat-option value="6">Satuday</mat-option>
+                            <mat-option value="7">Sunday</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label>End Time</mat-label>
+                        <input type="text" matInput formControlName="">
+                        <!-- <mat-hint>ex. 9 for 09H:00, 13:30 for 13h:30</mat-hint> -->
+                        <mat-error>enter valid time please</mat-error>
+                    </mat-form-field>
+                </div>
+                  <!-- click button -->
+                  <div class="mb-2">
+                    <button (click)="onSave()" mat-raised-button color="primary" [disabled]="!courseOfferingForm.valid">save</button>
+                </div>
+            </div>
+            <!-- end col -->
+            <!-- option -->
+            <div class="col">
+                <div class="mb-2" formGroupName="option">
+                    <mat-form-field>
+                        <mat-label>Select option</mat-label>
+                        <mat-select formControlName="id">
+                            <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name | uppercase }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- Teacher -->
+                <div class="mb-2" formGroupName="teacher">
+                    <mat-form-field>
+                        <mat-label>Select Teacher</mat-label>
+                        <mat-select formControlName="id">
+                            <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{ teacher.lastName  }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- StartTime -->
+                <div class="mb-2">
+                    <mat-form-field>
+                        <mat-label> Start Time</mat-label>
+                        <input matInput type="text" formControlName="startTime" >
+                        <mat-hint>ex. 9 for 09H:00, 13:30 for 13h:30</mat-hint>
+                        <mat-error></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

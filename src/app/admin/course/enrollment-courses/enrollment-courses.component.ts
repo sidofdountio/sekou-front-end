@@ -9,7 +9,7 @@ import { LevelService } from 'src/app/service/level.service';
 import { OptionService } from 'src/app/service/option.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-
+// save on enrolle to course. Form.
 @Component({
   selector: 'app-enrollment-courses',
   templateUrl: './enrollment-courses.component.html',
@@ -60,7 +60,7 @@ export class EnrollmentCoursesComponent implements OnInit {
     console.log(this.courseEnrollmentForm.value)
     this.dialogRef.close(this.courseEnrollmentForm.value as CourseEnrollment);
   }
-  
+
   onClose() {
     this.dialogRef.close();
   }

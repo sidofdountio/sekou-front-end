@@ -8,7 +8,17 @@ import { Register } from 'src/app/model/register';
 import { RegisteStudentComponent } from '../registe-student/registe-student.component';
 import { NotificationService } from 'src/app/service/notification.service';
 import { RegisterService } from 'src/app/service/register.service';
+import { AppState } from 'src/app/model/appState';
+import { CustomResponse } from 'src/app/model/custom-response';
+import { DataState } from 'src/app/model/enumeration/dataState';
+import {BehaviorSubject, Observable , of} from 'rxjs';
+import {  map, startWith, catchError } from 'rxjs/operators';
 
+
+/**
+ * This component liste register student not save.
+ * Registed student mean does whoe has already pay a fee for school year.
+ */
 @Component({
   selector: 'app-student-registe-list',
   templateUrl: './student-registe-list.component.html',
@@ -16,8 +26,9 @@ import { RegisterService } from 'src/app/service/register.service';
 })
 
 export class StudentRegisteListComponent implements OnInit, AfterViewInit {
-
-
+  appState$: Observable<AppState<CustomResponse>>;
+  readonly DataSate = DataState;
+  private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Register>([]);
   displayedColumns: string[] = ['firstName', 'lastName', 'valid', 'stardDate', 'level', 'option', 'feeRegister', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,7 +37,18 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   constructor(private dialog: MatDialog, private router: Router, private registerService: RegisterService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.getRegistedStudent();
+    this.appState$ = this.registerService.registers$.pipe(
+      map(response => {
+        this.dataSubject.next(response);
+        this.dataSource.data=response.data.registers;
+        return { dataState: DataState.LOADED_STATE, appData: response }
+      }),
+      startWith({ dataState: DataState.LOADING_STATE }),
+      catchError((error: string) => {
+        return of({ dataState: DataState.ERROR_STATE, error })
+      })
+    );
+    
   }
 
 
@@ -34,19 +56,15 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this,this.dataSource.paginator = this.paginator;
   }
-
-  getRegistedStudent():void{
-    this.registerService.registers$.subscribe(
-      response=>{
-        this.dataSource.data = response.data.registers;
-        this.notificationService.onDefault(response.message);
-      }
-    )
-  }
+  
 
 
-
+  /**
+   * Method to reigist a student.
+   * @constructor
+   */
   OnRegister() {
+    // registe object
     let register: Register={
       feeRegister: 0,
       valid: false,
@@ -79,22 +97,28 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     dialogConf.disableClose = true;
     dialogConf.data = register;
     this.dialog.open(RegisteStudentComponent, dialogConf).afterClosed()
-      .subscribe((response) => {this.saveRegistration();});
+      .subscribe((response) => {
+        if(response != undefined){
+          this.saveRegistration();
+        }
+      });
   }
-  
-  saveRegistration() {
 
+  /**
+   * Handler service to save a register.
+   */
+  saveRegistration() {
   }
 
 
   onProfile(arg0: any) {
-
   }
+  
   onUpdate(arg0: any) {
-
   }
+  // Export register student on excel file
   OnExport() {
-
   }
 
+  protected readonly DataState = DataState;
 }

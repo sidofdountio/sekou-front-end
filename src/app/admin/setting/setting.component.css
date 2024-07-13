@@ -15,7 +15,6 @@
 }
 
 .form-option {
-    border: 1px solid #ccc;
     padding: 20px;
 }
 
@@ -24,7 +23,6 @@
 }
 
 .form-level {
-    border: 1px solid #ccc;
     padding: 20px;
 }
 
@@ -37,7 +35,6 @@
 }
 
 .form-course {
-    border: 1px solid #ccc;
     padding: 10px;
 }
 
@@ -56,6 +53,10 @@
 
 mat-form-field {
     width: 400px;
+}
+.card{
+  border: none;
+  box-shadow: 3px 3px 3px  #eee;
 }
 
 button {

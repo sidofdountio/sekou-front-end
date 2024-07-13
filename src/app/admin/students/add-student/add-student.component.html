@@ -1,4 +1,4 @@
-<h1 class="mat-2" mat-dialog-title>Save New Student</h1>
+<h1 class="mat-2" mat-dialog-title>Add New Student</h1>
 <mat-dialog-content [formGroup]="studentReq">
     <small class="text-success mb-1">This action will save a student. After you be abble complete by adding course details</small>
     <div class="row">
@@ -52,7 +52,7 @@
         </div>
     </div>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions align="end">
     <button matTooltip="Cancel" mat-raised-button color="warn" (click)="onClose()">Cancel</button>&nbsp;&nbsp;
     <button type="submit" mat-raised-button color="primary" [disabled]="!studentReq.valid" matTooltip="save"
         (click)="onSave()">Save</button>

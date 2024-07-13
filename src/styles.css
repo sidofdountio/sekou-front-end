@@ -7,17 +7,23 @@ body {
 }
 
 body {
+  font-size: .875rem;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #333333;
 }
 
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
   color: #333;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: .875rem;
+}
+
+bi{
+  color: #333333;
 }
 
 h1,
@@ -39,4 +45,12 @@ p {
 
 .box-shadow {
   box-shadow: 5px 5px 5px #333;
+}
+
+mat-form-field{
+  color: blueviolet;
+  font-weight: bold;
+}
+mat-form-select{
+  color: blueviolet;
 }

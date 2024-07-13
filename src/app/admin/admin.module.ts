@@ -41,7 +41,12 @@ import { StudentRegisteListComponent } from './students/student-registe-list/stu
 import { StudentTreeComponent } from './students/student-tree/student-tree.component';
 import { AddStudentComponent } from './students/add-student/add-student.component';
 import {MatCardModule} from '@angular/material/card';
-import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component'; 
+import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component';
+import { CourseOfferingComponent } from './course-offering/course-offering.component';
+import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
+import { TeachersComponent } from './teacher/teachers/teachers.component';
+import { AddTeacherComponent } from './teacher/add-teacher/add-teacher.component';
+import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.component'; 
 
 
 @NgModule({
@@ -59,7 +64,12 @@ import { RegisterStudent2Component } from './student/register-student-2/register
     StudentRegisteListComponent,
     StudentTreeComponent,
     AddStudentComponent,
-    RegisterStudent2Component
+    RegisterStudent2Component,
+    CourseOfferingComponent,
+    SchedulerCourseOfferingComponent,
+    TeachersComponent,
+    AddTeacherComponent,
+    EditTeacherComponent
   ],
   imports: [
     MatCardModule,
