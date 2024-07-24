@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataState } from 'src/app/model/enumeration/dataState';
@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   templateUrl: './course-offering.component.html',
   styleUrls: ['./course-offering.component.css']
 })
-export class CourseOfferingComponent {
+export class CourseOfferingComponent implements OnInit{
 
   levels: Level[];
   appState$: Observable<AppState<CustomResponse>>;
@@ -33,7 +33,7 @@ export class CourseOfferingComponent {
 
 
   dataSource = new MatTableDataSource<CourseOffering>([]);
-  displayedColumns: string[] = ['startTime', 'endTime', 'dayOfWeek', 'course'];
+  displayedColumns: string[] = ['startTime', 'endTime', 'dayOfWeek', 'course','level','option','year'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   options: Option[];
@@ -45,11 +45,10 @@ export class CourseOfferingComponent {
     private courseService: CourseService,
     private router:Router) { }
 
-
   ngOnInit(): void {
     this.appState$ = this.courseOfferingService.coursesOfferings$.pipe(
       map(response => {
-        // this.dataSubject.next(response);
+        this.dataSubject.next(response);
         this.dataSource.data = response.data.courseOfferings;
         this.notificationService.onDefault(response.message);
         return { dataState: DataState.LOADED_STATE, appData: response }
@@ -59,6 +58,12 @@ export class CourseOfferingComponent {
         return of({ dataState: DataState.ERROR_STATE, error })
       })
     );
+  }
+
+  // After init
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator
   }
 
   // get option
@@ -85,14 +90,11 @@ export class CourseOfferingComponent {
       }
     );
   }
-  // God on scheduler course
+  // Go on scheduler course
   onSaveCourseOffering() {
     this.router.navigate(["admin/scheduler-course-offering"])
   }
 
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator
-  }
+ 
 }

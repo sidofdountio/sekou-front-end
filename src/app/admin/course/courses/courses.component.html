@@ -5,6 +5,7 @@
     </button>
     Courses
   </h1>
+  <!-- filter -->
   <div class="row mb-3">
     <h3 class="mat-3">Filter</h3>
     <div class="col-lg-4 col-md-4">
@@ -23,19 +24,24 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="col-lg-4 col-md-4"></div>
+
   </div>
+  <!-- end filter -->
+  <!-- anction button -->
+  <div class="row">
+    <div class="col-md-3 d-flex justify-content-between mb-2">
+      <button matTooltip="Add new course" (click)="onSaveCourse()" mat-icon-button class="box-shadow">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button matTooltip="Enroll new course" (click)="onSaveCourseEnrollment()" mat-raised-button color="primary"
+        class="">Enroll Course
+      </button>
+    </div>
+  </div>
+  <!-- table start -->
   <div class="row">
     <h3>Enrollment Course</h3>
     <div class="col-lg-12 col-md-12">
-      <div class="col-md-3 d-flex justify-content-between mb-2">
-        <button matTooltip="Add new course" (click)="onSaveCourse()" mat-icon-button class="box-shadow">
-          <mat-icon>add</mat-icon>
-        </button>
-        <button matTooltip="Enroll new course" (click)="onSaveCourseEnrollment()" mat-raised-button color="primary"
-                class="">Enroll Course
-        </button>
-      </div>
       <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
         <ng-container *ngSwitchCase="DataState.LOADING_STATE">
           <div class="col-md-12 single-note-item text-center">
@@ -45,7 +51,7 @@
         <ng-container *ngSwitchCase="DataState.ERROR_STATE">
           <div class="alert alert-warning">{{ appState.error }}</div>
         </ng-container>
-        <ng-container >
+        <ng-container>
           <div class="mat-elevation-z8 mb-4">
             <table mat-table [dataSource]="dataSource" matSort>
               <!-- tile -->
@@ -72,7 +78,7 @@
               <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
-                           aria-label="Select page of periodic elements"></mat-paginator>
+              aria-label="Select page of periodic elements"></mat-paginator>
           </div>
         </ng-container>
       </ng-container>

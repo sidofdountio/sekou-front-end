@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Course } from 'src/app/model/course';
 import { CourseOffering } from 'src/app/model/course-offering';
-import { DayOfWeek } from 'src/app/model/enumeration/day-of-week';
 import { Level } from 'src/app/model/level';
+import { CourseOfferingDto } from 'src/app/model/model-dto/course-offering-dto';
 import { Option } from 'src/app/model/option';
 import { Teacher } from 'src/app/model/teacher';
 import { CourseOfferingServiceService } from 'src/app/service/course-offering-service.service';
@@ -19,35 +20,43 @@ import { TeacherService } from 'src/app/service/teacher-service.service';
   styleUrls: ['./scheduler-course-offering.component.css']
 })
 export class SchedulerCourseOfferingComponent {
+  isLoading = new BehaviorSubject<boolean>(false);
+  loading$ = this.isLoading.asObservable();
+  courseOfferingToSave: CourseOffering;
+
   // Form to enroll course.
   courseOfferingForm = this.fbuilde.group({
-    startTime:[],
-    endTime:[Validators.required],
-    dayOfWeek:[[Validators.required]],
-    course: this.fbuilde.group({
-      id: [, [Validators.required]]
-    }),
+    startTime: ['', [Validators.required]],
+    endTime: ['', [Validators.required]],
+    day: ['', [Validators.required]],
     level: this.fbuilde.group({
-      id: [, [Validators.required]]
+      id: [0, [Validators.required]]
     }),
     option: this.fbuilde.group({
-      id: [, [Validators.required]]
+      id: [0, [Validators.required]]
+    }),
+    course: this.fbuilde.group({
+      id: [0, [Validators.required]]
     }),
     teacher: this.fbuilde.group({
-      id: [, [Validators.required]]
+      id: [0, [Validators.required]]
     })
-    
   });
 
+  option: Option;
   // List
   courses: Course[];
   options: Option[];
   levels: Level[];
   teachers: Teacher[];
 
-  constructor(private fbuilde: FormBuilder, private courseOfferingService: CourseOfferingServiceService,
-    private levelService: LevelService, private optionService: OptionService, private notifier: NotificationService,
-    private courseService: CourseService, private teacherService: TeacherService) { }
+  constructor(private fbuilde: FormBuilder, 
+    private courseOfferingService: CourseOfferingServiceService,
+    private levelService: LevelService,
+    private optionService: OptionService,
+    private notifier: NotificationService,
+    private courseService: CourseService,
+    private teacherService: TeacherService) { }
 
   ngOnInit(): void {
     // Fetch level.
@@ -73,23 +82,22 @@ export class SchedulerCourseOfferingComponent {
   }
 
 
+
   onSave() {
+
     let courseOffering: CourseOffering = {
-      id: 0,
+      id: null,
       startTime: this.courseOfferingForm.value.startTime,
       endTime: this.courseOfferingForm.value.endTime,
-      dayOfWeek: this.courseOfferingForm.value.dayOfWeek,
+      dayOfWeek: this.courseOfferingForm.value.day as any,
+      year: "2024",
+      option: {
+        id: this.courseOfferingForm.value.option.id,
+        name: ''
+      },
       level: {
         id: this.courseOfferingForm.value.level.id,
         name: ''
-      },
-      option: {
-        id: this.courseOfferingForm.value.option.id,
-        name: '',
-        speciality: {
-          id: 0,
-          name: ''
-        }
       },
       course: {
         id: this.courseOfferingForm.value.course.id,
@@ -105,17 +113,21 @@ export class SchedulerCourseOfferingComponent {
         disploma: '',
         exprience: ''
       }
-    }
+    };
+    console.log(courseOffering);
+    this.isLoading.next(true);
     this.courseOfferingService.save$(courseOffering).subscribe({
       next: (response => {
+        this.isLoading.next(false)
         this.notifier.onSuccess(response.message);
         this.courseOfferingForm.reset();
       }),
       error: any => {
+        this.isLoading.next(false);
         this.notifier.onError("cannot be able to schduler course");
-        this.courseOfferingForm.reset();
+        // this.courseOfferingForm.reset();
       }
-    })
+    });
   }
 
 

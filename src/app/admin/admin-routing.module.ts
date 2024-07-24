@@ -13,6 +13,10 @@ import { CourseOfferingComponent } from './course-offering/course-offering.compo
 import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
 import { TeachersComponent } from './teacher/teachers/teachers.component';
 import { AddTeacherComponent } from './teacher/add-teacher/add-teacher.component';
+import { AssessmentListComponent } from './assessment/assessment-list/assessment-list.component';
+import { AddAssessmentComponent } from './assessment/add-assessment/add-assessment.component';
+import { AssessmentPeriodComponent } from './assessment/assessment-period/assessment-period.component';
+import { AssessmentsComponent } from './assessment/assessments/assessments.component';
 
 const routes: Routes = [
   {
@@ -26,6 +30,21 @@ const routes: Routes = [
           {
             path: '',
             component: DashbordComponent
+          },
+          {
+            path: 'assessment-period',
+            component: AssessmentPeriodComponent,
+            title: 'Assessment-priod'
+          },
+          {
+            path: 'schedule-assessment/:date/:due/:id',
+            component: AddAssessmentComponent,
+            title: 'Scheduler-Assessment'
+          },
+          {
+            path: 'assessments',
+            component:  AssessmentsComponent,
+            title: 'Assessment'
           },
           {
             path: 'scheduler-course-offering',

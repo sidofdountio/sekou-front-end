@@ -5,7 +5,7 @@ export interface Register {
     feeRegister:number;
     valid?:boolean;
     registerDate?:Date;
-    stardDate?:number;
+    startDate?:number;
     endDate:number;
     student:Student;
 }

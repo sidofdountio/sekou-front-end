@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+td{
+    border-bottom: 1px solid #eee;
+}
+table{
+    font-size: 14px;
+}

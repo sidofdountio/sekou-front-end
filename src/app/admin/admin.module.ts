@@ -46,7 +46,12 @@ import { CourseOfferingComponent } from './course-offering/course-offering.compo
 import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
 import { TeachersComponent } from './teacher/teachers/teachers.component';
 import { AddTeacherComponent } from './teacher/add-teacher/add-teacher.component';
-import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.component'; 
+import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.component';
+import { AssessmentListComponent } from './assessment/assessment-list/assessment-list.component';
+import { AddAssessmentComponent } from './assessment/add-assessment/add-assessment.component';
+import { EditeAssessmentComponent } from './assessment/edite-assessment/edite-assessment.component';
+import { AssessmentPeriodComponent } from './assessment/assessment-period/assessment-period.component';
+import { AssessmentsComponent } from './assessment/assessments/assessments.component'; 
 
 
 @NgModule({
@@ -69,7 +74,12 @@ import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.compon
     SchedulerCourseOfferingComponent,
     TeachersComponent,
     AddTeacherComponent,
-    EditTeacherComponent
+    EditTeacherComponent,
+    AssessmentListComponent,
+    AddAssessmentComponent,
+    EditeAssessmentComponent,
+    AssessmentPeriodComponent,
+    AssessmentsComponent
   ],
   imports: [
     MatCardModule,

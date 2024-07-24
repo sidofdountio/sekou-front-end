@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RegisterDto } from 'src/app/model/register-dto';
 import { Student } from 'src/app/model/student';
 import { NotificationService } from 'src/app/service/notification.service';

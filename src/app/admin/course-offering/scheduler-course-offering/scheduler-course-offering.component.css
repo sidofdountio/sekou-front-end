@@ -4,13 +4,16 @@
     width: 700px;
     border-radius: 15px;
     padding: 8px 8px 8px 8px;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
+    background: #FFF;
 }
-mat-form-field{
+
+mat-form-field {
     width: 300px;
     color: blue;
 }
 
-button{
-    border-radius: 20px;
-   }
+input {
+    width: 300px;
+    color: blue;
+}

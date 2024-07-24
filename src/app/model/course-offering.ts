@@ -6,12 +6,12 @@ import { Teacher } from "./teacher";
 
 export interface CourseOffering {
     id:number;
-    startTime:number;
-    endTime:number;
+    startTime:any;
+    endTime:any;
     dayOfWeek:DayOfWeek;
-    level:Level;
     option:Option;
+    level:Level;
     course:Course;
     teacher:Teacher;
-    year?:any;
+    year:any;
 }

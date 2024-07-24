@@ -15,7 +15,7 @@ export class AddTeacherComponent {
     lastName: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
     email: ['', [Validators.email, Validators.required]],
-    phone: ['', [Validators.maxLength(9), Validators.required]]
+    phone: ['', [Validators.minLength(9), Validators.required]]
   })
   constructor(private fbuild: FormBuilder, private teacherService: TeacherService,
     private notifier: NotificationService

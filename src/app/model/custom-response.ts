@@ -1,3 +1,5 @@
+import { Assessment } from "./assessment";
+import { AssessmentPeriod } from "./assessment-period";
 import { Course } from "./course";
 import { CourseEnrollment } from "./course-enrollment";
 import { CourseOffering } from "./course-offering";
@@ -17,11 +19,13 @@ export interface CustomResponse {
         courses?: Course[],course?: Course
         level?:Level, levels?:Level[],
         speciality?:Speciality,specialities?:Speciality[],
-        option?:Option, options:Option[],
+        option?:Option, options?:Option[],
         coursesEnrollments?: CourseEnrollment[],coursesEnrollment?: CourseEnrollment,
         student?:Student,students?:Student[],
         register?:Register,registers?:Register[],
         courseOffering?:CourseOffering,courseOfferings?:CourseOffering[],
-        teacher?:Teacher,teachers:Teacher[]
+        teacher?:Teacher,teachers?:Teacher[],
+        assessment?:Assessment,assessments?:Assessment[],
+        period?:AssessmentPeriod,periods?:AssessmentPeriod[],
     };
 }

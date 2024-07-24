@@ -1,0 +1,115 @@
+<div class="container">
+    <h1>
+        Save assessment
+    </h1>
+    <div class="">
+        <div class="d-flex justify-content-center text-center">
+            <h3 class="text-bg-info"> Period Start at {{ date | date}} To {{due |date}}</h3>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-info">
+            Please Make Sur To Add All Courses For This Period
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="form p-4" [formGroup]="assessmentForm">
+            <div class="row">
+                <div class="col">
+                    <!-- start date -->
+                    <div class="mb-2">
+                        <label for="" class="form-label">Start time</label>
+                        <input type="time" class="form-control" name="startTime" formControlName="startTime">
+                        <span *ngIf="assessmentForm.errors" class="text-danger">Enter valid date</span>
+                    </div> <!-- end -->
+                    <!-- course -->
+                    <div class="mb-2" formGroupName="course">
+                        <mat-form-field>
+                            <mat-label>Select course</mat-label>
+                            <mat-select formControlName="id">
+                                <mat-option *ngFor="let course of courses" [value]="course.id">{{ course.title
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div><!-- end -->
+                    <!-- Level -->
+                    <div class="mb-2" formGroupName="level">
+                        <mat-form-field>
+                            <mat-label>Select Level</mat-label>
+                            <mat-select formControlName="id">
+                                <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div><!-- end -->
+                    <!-- Level -->
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Select Exam Type</mat-label>
+                            <mat-select formControlName="assessmentType">
+                                <mat-option value="EXAM">Exam</mat-option>
+                                <mat-option value="PROJECT">Project</mat-option>
+                                <mat-option value="ASSIGNMENT">Assignment</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div><!-- end -->
+
+                    <!-- submit button -->
+                    <div class="mb-2">
+                        <div class="col-sm-8 d-flex justify-content-between">
+                            <button *ngIf="!(loading$ | async)" matTooltip="save" class="custorm-button" mat-flat-button
+                                color="primary" (click)="onSaveAssessment()"
+                                [disabled]="!assessmentForm.valid">save</button>
+                            <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Saving...
+                            </button>
+                            
+                            <button mat-flat-button color="warn" class="custorm-button"
+                                routerLink="/admin/assessment-period">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- start -->
+                    <div class="mb-2">
+                        <label for="" class="form-label">End time</label>
+                        <input type="time" class="form-control" formControlName="endTime">
+                    </div>
+                    <!-- end -->
+                    <!-- option -->
+                    <div class="mb-2" formGroupName="option">
+                        <mat-form-field>
+                            <mat-label>Select option</mat-label>
+                            <mat-select formControlName="id">
+                                <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name |
+                                    uppercase
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div><!-- end -->
+                    <!-- year -->
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <input type="text" formControlName="year" [placeholder]="currentYear" matInput>
+                        </mat-form-field>
+                    </div>
+                    <!-- end -->
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Select Day</mat-label>
+                            <mat-select formControlName="day">
+                                <mat-option value="MONDAY">Monday</mat-option>
+                                <mat-option value="TUESDAY">Tuesday</mat-option>
+                                <mat-option value="WEDNESDAY">Wednesday</mat-option>
+                                <mat-option value="THURSDAY">Thursday</mat-option>
+                                <mat-option value="FRIDAY">Friday</mat-option>
+                                <mat-option value="SATURDAY">Satuday</mat-option>
+                                <mat-option value="SUNDAY">Sunday</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

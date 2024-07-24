@@ -1,8 +1,8 @@
 .sidenav-container {
   height: 100%;
   /* background: whitesmoke; */
-  /*background: #f2f1ef;*/
   font-size: .875rem;
+  background-color: #f9f9f9;
 }
 .matListItemIcon{
   color: #333;
@@ -10,8 +10,7 @@
 
 .sidenav {
   width: 200px;
-  background: #ffff;
-
+  background-color: #fff;
 }
 
 

@@ -13,6 +13,8 @@ import { CustomResponse } from 'src/app/model/custom-response';
 import { DataState } from 'src/app/model/enumeration/dataState';
 import {BehaviorSubject, Observable , of} from 'rxjs';
 import {  map, startWith, catchError } from 'rxjs/operators';
+import { RegisterDto } from 'src/app/model/register-dto';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 /**
@@ -26,6 +28,8 @@ import {  map, startWith, catchError } from 'rxjs/operators';
 })
 
 export class StudentRegisteListComponent implements OnInit, AfterViewInit {
+  loading = new BehaviorSubject<boolean>(false);
+  isLoading$ = this.loading.asObservable();
   appState$: Observable<AppState<CustomResponse>>;
   readonly DataSate = DataState;
   private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
@@ -34,7 +38,8 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private router: Router, private registerService: RegisterService, private notificationService: NotificationService) { }
+  constructor(private dialog: MatDialog, private router: Router, 
+    private registerService: RegisterService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.appState$ = this.registerService.registers$.pipe(
@@ -48,7 +53,6 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
         return of({ dataState: DataState.ERROR_STATE, error })
       })
     );
-    
   }
 
 
@@ -57,7 +61,6 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     this,this.dataSource.paginator = this.paginator;
   }
   
-
 
   /**
    * Method to reigist a student.
@@ -69,7 +72,7 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
       feeRegister: 0,
       valid: false,
       registerDate: undefined,
-      stardDate: 0,
+      startDate: 0,
       endDate: 0,
       student: {
         id: 0,
@@ -97,17 +100,34 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     dialogConf.disableClose = true;
     dialogConf.data = register;
     this.dialog.open(RegisteStudentComponent, dialogConf).afterClosed()
-      .subscribe((response) => {
-        if(response != undefined){
-          this.saveRegistration();
-        }
-      });
+    .subscribe(response=>{
+      if(response !== undefined){
+        this.saveRegistration(response);
+      }
+    })
+      
   }
 
   /**
    * Handler service to save a register.
    */
-  saveRegistration() {
+  saveRegistration(regiterStudent:RegisterDto) {
+    this.loading.next(true);
+    this.registerService.save$(regiterStudent).subscribe(
+      {
+        next: (response=>{
+          this.notificationService.onSuccess(response.message);
+          this.loading.next(false);
+          this.appState$.subscribe();
+          
+        }),
+         error : (error:HttpErrorResponse)=>{
+          this.notificationService.onError("cannot register");
+          console.log("error "+ error);
+          this.loading.next(true);
+         }
+      }
+    )
   }
 
 

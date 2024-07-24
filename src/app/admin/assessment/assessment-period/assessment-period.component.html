@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="d-flex justify-content-center mt-4">
+        <div class="form p-4" [formGroup]="periodeForm">
+            <h3 class="text-bg-info">Difine The Assessment Period</h3>
+            <div class="row">
+                <div class="col">
+                    <!-- start date -->
+                    <div class="mb-2">
+                        <label for="" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" name="date" formControlName="date">
+                    </div> <!-- end -->
+                    <!-- submit button -->
+                    <div class="mb-2">
+                        <div class="col-sm-4">
+                            <button matTooltip="save" class="custorm-button" mat-flat-button color="primary"
+                                (click)="onAssessmentPeriod()" [disabled]="!periodeForm.valid">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- start -->
+                    <div class="mb-2">
+                        <label for="" class="form-label">End Date</label>
+                        <input type="date" class="form-control" formControlName="due">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

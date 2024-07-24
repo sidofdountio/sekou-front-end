@@ -1,0 +1,18 @@
+input {
+    width: 300px;
+    color: blue;
+    font-weight: 500;
+}
+mat-form-field{
+    width: 300px;
+    color: blue;
+    font-weight: 500;
+}
+.custorm-button {
+    border-radius: 20px;
+}
+
+.form{
+    background: #ffffff;
+    border: 1px solid #eee;
+}

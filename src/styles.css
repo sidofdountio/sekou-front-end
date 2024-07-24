@@ -54,3 +54,6 @@ mat-form-field{
 mat-form-select{
   color: blueviolet;
 }
+.custorm-button {
+  border-radius: 20px;
+}
