@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AddStudentComponent } from '../add-student/add-student.component';
 import { StudentRequest } from 'src/app/model/student-request';
 import { Student } from 'src/app/model/student';
-import { Gender } from 'src/app/model/enumeration/gender';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -24,21 +23,11 @@ import {  map, startWith, catchError } from 'rxjs/operators';
 export class StudentListComponent implements OnInit, AfterViewInit {
 
   // Object
-  students: Student[] = [{
-    id: 0,
-    firstName: 'Jasme',
-    lastName: 'Golsing',
-    email: '',
-    dateOfBirth: undefined,
-    level: undefined,
-    option: undefined,
-    gender: Gender.MALE
-  }]
+  students: Student[] = [];
   readonly DataSate = DataState;
   private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Student>([]);
   appState$: Observable<AppState<CustomResponse>>;
-
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'level', 'option', 'gender', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

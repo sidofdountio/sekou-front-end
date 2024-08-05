@@ -24,3 +24,18 @@
   top: 0;
   z-index: 1;
 }
+
+mat-icon{
+  font-size: 20px;
+}
+
+a{
+  font-size: 20px;
+}
+
+.custorm-icon{
+  display: inline-flex;
+  position: relative;
+  top: 2px;
+  margin-left: 2px;
+}

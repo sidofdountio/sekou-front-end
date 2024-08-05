@@ -1,7 +1,71 @@
 <div class="container">
     <h1 class="mat-1">
-        <a routerLink="/admin/students">sssss</a>
-        <button mat-icon-button routerLink="../" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>
-        Edit
+        <button mat-icon-button routerLink="/admin/students" matTooltip="Go back">
+            <mat-icon>arrow_back</mat-icon></button>
+        Edit Student Informations
     </h1>
+    <div class="row">
+        <div class="col-lg-12" [formGroup]="studentReq">
+            <div class="row">
+                <!-- section one -->
+                <div class="col">
+                    <div class="mb-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input type="text" matInput formControlName="lastName" [value]="student.lastName">
+                            <mat-error>You must a lastName</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>First Name</mat-label>
+                            <input type="text" matInput formControlName="firstName" [value]="student.firstName">
+                            <mat-error>You must a Valid First Name</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Level</mat-label>
+                            <input disabled type="text" matInput [value]="student.level.name" />
+                        </mat-form-field>
+                    </div>
+
+                </div><!-- end -->
+                <!-- section two -->
+                <div class="col">
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput formControlName="email" [value]="student.email">
+                            <mat-error>You must enter a valid email</mat-error>
+                            <mat-hint>ex. Kemajoujuly@gmail.com</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Select Gender</mat-label>
+                            <mat-select formControlName="gender">
+                                <!-- <mat-option select [value]="student.gender">{{ student.gender}}</mat-option> -->
+                                <mat-option value="MALE">MALE</mat-option>
+                                <mat-option value="FEMALE">FEMALE</mat-option>
+                            </mat-select>
+                            <mat-error>You must select a Gender</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Day Of Birth</mat-label>
+                            <input type="date" matInput [value]="student.dateOfBirth" formControlName="dateOfBirth" >
+                        </mat-form-field>
+                    </div>
+                </div><!-- end -->
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <button (click)="onCancel()" mat-raised-button color="warn" class="me-2">Cancel</button>
+                        <button [disabled]="!studentReq.valid" (click)="onUpdate()" mat-raised-button color="primary" >Save Change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

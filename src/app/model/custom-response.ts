@@ -8,6 +8,7 @@ import { Option } from "./option";
 import { Register } from "./register";
 import { Speciality } from "./speciality";
 import { Student } from "./student";
+import { StudentAssessment } from "./student-assessment";
 import { Teacher } from "./teacher";
 
 export interface CustomResponse {
@@ -26,6 +27,7 @@ export interface CustomResponse {
         courseOffering?:CourseOffering,courseOfferings?:CourseOffering[],
         teacher?:Teacher,teachers?:Teacher[],
         assessment?:Assessment,assessments?:Assessment[],
+        studentAssessment?:StudentAssessment,studentAssessments?:StudentAssessment[],
         period?:AssessmentPeriod,periods?:AssessmentPeriod[],
     };
 }

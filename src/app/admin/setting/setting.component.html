@@ -2,7 +2,7 @@
     <h1 class="mat-1">
         <button mat-icon-button routerLink="../admin" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>Settings</h1>
     <div class="row mb-2">
-        <p class="text-bg-info">This Page help to create or setting a lot of configuration like: Adding new <span class="fw-bold">Level, Option, Speciality and Course</span></p>
+        <p class="text-info">This Page help to create or setting a lot of configuration like: Adding new Level, Option, Speciality and Course</p>
         <!-- speciality -->
         <div class="col-lg-4 col-md-4">
             <div class="form-speciality card">
@@ -27,7 +27,8 @@
         <!-- option -->
         <div class="col-lg-8 col-md-8">
             <div class="form-option card">
-                <h3 class="mat-3 text-center">Add oew option</h3>
+                <h3 class="">Add new option  </h3>
+                
                 <div class="row" [formGroup]="optionForm">
                     <div class="col">
                         <div class="mb-3 ">
@@ -40,6 +41,7 @@
                         </div>
                     </div>
                     <div class="col" formGroupName="speciality">
+                        
                         <mat-form-field>
                             <mat-label>Select Speciality</mat-label>
                             <mat-select formControlName="id">
@@ -59,7 +61,7 @@
         <!-- level -->
         <div class="col-lg-4 col-md-4">
             <div class="form-level card">
-                <h3 class="mat-3 text-center">Add New Level</h3>
+                <h3 class="mat-3">Add New Level</h3>
                 <div class="row ">
                     <div class="col" [formGroup]="levelForm">
                         <div class="mb-2">
@@ -81,7 +83,7 @@
        <!-- Course  -->
         <div class="col-lg-8 col-md-8">
             <div class="form-course card">
-                <h3 class="mat-3 text-center">Create New Course</h3>
+                <h3 class="mat-3">Create New Course</h3>
                 <div class="row " [formGroup]="courseForm">
                     <div class="col">
                         <div class="mb-2">

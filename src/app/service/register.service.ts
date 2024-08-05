@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, tap, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { CustomResponse } from '../model/custom-response';
+import { Register } from '../model/register';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,8 @@ export class RegisterService {
         catchError(this.handlerError)
       );
 
-  save$ = (student: RegisterDto) => <Observable<CustomResponse>>
-    this.http.post<CustomResponse>(`${this.URL}`, student)
+  save$ = (registed: Register) => <Observable<CustomResponse>>
+    this.http.post<CustomResponse>(`${this.URL}`, registed)
       .pipe(
         tap(console.log),
         catchError(this.handlerError)

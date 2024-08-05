@@ -1,0 +1,14 @@
+mat-form-field{
+    width: 300px;
+    font-weight: bolder; 
+    color: #3161db;
+}
+
+
+input{
+    color: #3161db;
+}
+
+button{
+    border-radius: 20px;
+}

@@ -12,42 +12,49 @@ export class MessageModalService {
     message: '',
     discase: false
   }
-  
+
   // will be use to whether user had click on close button.
-  discase:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  discase: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  alownChange:boolean=false;
 
   constructor(private dialogue: MatDialog) { }
 
-  confirmMessage(message:string):void{
+  confirmMessage(message: string): void {
     // dialogConfig
     const dialogConfig: MatDialogConfig = new MatDialogConfig();
-    this.messageModaleData.message=message;
-    dialogConfig.data =this.messageModaleData;
-    dialogConfig.autoFocus=true;
-    dialogConfig.disableClose=true;
+    this.messageModaleData.message = message;
+    dialogConfig.data = this.messageModaleData;
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
     // dialogRef
-    const dialogRef:MatDialogRef<MessageModaleComponent>=this.dialogue.open(MessageModaleComponent,dialogConfig);
+    const dialogRef: MatDialogRef<MessageModaleComponent> = this.dialogue.open(MessageModaleComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
-      response=>{
+      (response: MessageModal) => {
         // receive information from modal compone after close it.
         // set it to our diacase,messgeModaleData
-        this.discase.next(response);
-      },error=>{
-        console.log('error after close modale message type %s',error);
+        this.discase.next(response.discase);
+        this.alownChange=response.discase;
+      }, error => {
+        console.log('error after close modale message type %s', error);
       }
     );
   }
 
-  closeEditeDialog$(): Observable<boolean> {
+  /**
+   * 
+   * @returns Subbscribe to the method to check the value of discase: TRUE OR FALSE.
+   */
+  checkDiscaseValueAfterCloseModale$(): Observable<boolean> {
     return this.discase.asObservable();
   }
+
   /** 
    * Update the of discase to false after close the dialog.
    * So we will be to re-open the dialog.
   */
   updateValue() {
+    this.alownChange=false;
     this.discase.next(false);
   }
-
 
 }

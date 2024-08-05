@@ -49,6 +49,17 @@ export class RegisteStudentComponent implements OnInit {
         email: '',
         level: undefined,
         option: undefined
+      }, level: {
+        id: 0,
+        name: ''
+      },
+      option: {
+        id: 0,
+        name: '',
+        speciality: {
+          id: 0,
+          name: ''
+        }
       }
     }
     console.log(register)

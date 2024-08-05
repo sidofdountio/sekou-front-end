@@ -1,3 +1,5 @@
+import { Level } from "./level";
+import { Option } from "./option";
 import { Student } from "./student";
 
 export interface Register {
@@ -8,4 +10,6 @@ export interface Register {
     startDate?:number;
     endDate:number;
     student:Student;
+    level:Level;
+    option:Option;
 }

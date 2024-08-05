@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import { NotifierModule } from 'angular-notifier';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,9 +21,10 @@ import {MatIconModule} from "@angular/material/icon";
     PageNotFoundComponent,
     WebsiteComponent,
     MessageModaleComponent,
-    MobileComponent
+    MobileComponent,
   ],
     imports: [
+      MatDialogModule,
         NotifierModule,
         MatButtonModule,
         BrowserModule,

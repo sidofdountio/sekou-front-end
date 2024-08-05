@@ -6,6 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { StudentDto } from '../model/student-dto';
 import { CustomResponse } from '../model/custom-response';
 import { StudentRequest } from '../model/student-request';
+import { Student } from '../model/student';
 
 
 @Injectable({
@@ -33,6 +34,13 @@ export class StudentService {
 
   saveStudent$ = (student: StudentRequest) => <Observable<CustomResponse>>
     this.http.post<CustomResponse>(`${this.URL}`, student)
+      .pipe(
+        tap(console.log),
+        catchError(this.handlerError)
+      );
+
+  updateStudent$ = (student: Student) => <Observable<CustomResponse>>
+    this.http.put<CustomResponse>(`${this.URL}`, student)
       .pipe(
         tap(console.log),
         catchError(this.handlerError)

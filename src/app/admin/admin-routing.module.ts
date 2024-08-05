@@ -13,10 +13,12 @@ import { CourseOfferingComponent } from './course-offering/course-offering.compo
 import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
 import { TeachersComponent } from './teacher/teachers/teachers.component';
 import { AddTeacherComponent } from './teacher/add-teacher/add-teacher.component';
-import { AssessmentListComponent } from './assessment/assessment-list/assessment-list.component';
 import { AddAssessmentComponent } from './assessment/add-assessment/add-assessment.component';
 import { AssessmentPeriodComponent } from './assessment/assessment-period/assessment-period.component';
 import { AssessmentsComponent } from './assessment/assessments/assessments.component';
+import { StudentAssessmentListComponent } from './student-assessment-list/student-assessment-list.component';
+import { StudentAssessmentComponent } from './student-assessment-list/student-assessment/student-assessment.component';
+import { SaveStudentAssessmentComponent } from './student-assessment-list/save-student-assessment/save-student-assessment.component';
 
 const routes: Routes = [
   {
@@ -43,7 +45,7 @@ const routes: Routes = [
           },
           {
             path: 'assessments',
-            component:  AssessmentsComponent,
+            component: AssessmentsComponent,
             title: 'Assessment'
           },
           {
@@ -100,7 +102,22 @@ const routes: Routes = [
             path: 'settings',
             component: SettingComponent,
             title: 'settings'
-          }
+          }, 
+          {
+            path: 'student-assessment',
+            component: StudentAssessmentListComponent,
+            title: 'student-assessment'
+          },
+          {
+            path: 'student-assessment-save-first-step',
+            component: StudentAssessmentComponent,
+            title: 'student-assessment-save-first-step'
+          },
+          {
+            path: 'save-student-assessment/:level/:option/:course/:exam/:year',
+            component: SaveStudentAssessmentComponent,
+            title: 'save-student-assessment'
+          },
         ]
       }
     ]

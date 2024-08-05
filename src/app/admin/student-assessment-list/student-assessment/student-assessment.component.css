@@ -1,0 +1,11 @@
+input {
+    width: 300px;
+    color: blue;
+    font-weight: 500;
+}
+
+mat-form-field {
+    width: 300px;
+    color: blue;
+    font-weight: 500;
+}

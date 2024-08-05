@@ -19,8 +19,6 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatMenuModule } from '@angular/material/menu';
 
 
-
-
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -51,7 +49,11 @@ import { AssessmentListComponent } from './assessment/assessment-list/assessment
 import { AddAssessmentComponent } from './assessment/add-assessment/add-assessment.component';
 import { EditeAssessmentComponent } from './assessment/edite-assessment/edite-assessment.component';
 import { AssessmentPeriodComponent } from './assessment/assessment-period/assessment-period.component';
-import { AssessmentsComponent } from './assessment/assessments/assessments.component'; 
+import { AssessmentsComponent } from './assessment/assessments/assessments.component';
+import { StudentAssessmentComponent } from './student-assessment-list/student-assessment/student-assessment.component';
+import { StudentAssessmentListComponent } from './student-assessment-list/student-assessment-list.component';
+import { StudentAssessmentAddComponent } from './student-assessment-list/student-assessment-add/student-assessment-add.component';
+import { SaveStudentAssessmentComponent } from './student-assessment-list/save-student-assessment/save-student-assessment.component';
 
 
 @NgModule({
@@ -79,7 +81,12 @@ import { AssessmentsComponent } from './assessment/assessments/assessments.compo
     AddAssessmentComponent,
     EditeAssessmentComponent,
     AssessmentPeriodComponent,
-    AssessmentsComponent
+    AssessmentsComponent,
+    StudentAssessmentComponent,
+    StudentAssessmentListComponent,
+    StudentAssessmentAddComponent,
+    SaveStudentAssessmentComponent
+
   ],
   imports: [
     MatCardModule,

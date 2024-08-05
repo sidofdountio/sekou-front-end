@@ -11,5 +11,13 @@ export interface Student {
     level:Level;
     option?:Option;
     gender?:Gender;
+    age?:number;
+    imageUrl?:string;
+    emergencyContact?:string;
+    currentGradeLevel?:string;
+    phoneNumber?:string;
+    address?:string;
+
+
     
 }

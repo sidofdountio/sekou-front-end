@@ -13,7 +13,6 @@ import { CustomResponse } from 'src/app/model/custom-response';
 import { DataState } from 'src/app/model/enumeration/dataState';
 import {BehaviorSubject, Observable , of} from 'rxjs';
 import {  map, startWith, catchError } from 'rxjs/operators';
-import { RegisterDto } from 'src/app/model/register-dto';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -92,6 +91,18 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
             name: ''
           }
         }
+      },
+      level: {
+        id: 0,
+        name: ''
+      },
+      option: {
+        id: 0,
+        name: '',
+        speciality: {
+          id: 0,
+          name: ''
+        }
       }
     };
     const dialogConf = new MatDialogConfig();
@@ -111,7 +122,7 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   /**
    * Handler service to save a register.
    */
-  saveRegistration(regiterStudent:RegisterDto) {
+  saveRegistration(regiterStudent:Register) {
     this.loading.next(true);
     this.registerService.save$(regiterStudent).subscribe(
       {

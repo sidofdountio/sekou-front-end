@@ -10,12 +10,14 @@ import { MessageModal } from 'src/app/model/message-modal';
 export class MessageModaleComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: MessageModal, private dialogRef: MatDialogRef<MessageModaleComponent>) { }
   save(): void {
+    console.log("yes")
     this.data.discase = true;
     this.dialogRef.close(this.data);
 
   }
   cancel(): void {
     this.data.discase = false;
+    console.log("no", this.data.discase);
     this.dialogRef.close(this.data);
   }
 

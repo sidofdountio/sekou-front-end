@@ -1,0 +1,24 @@
+<h3 mat-dialog-title>Put Score Here</h3>
+<mat-dialog-content [formGroup]="scoreForm">
+   <div class="col">
+    <mat-form-field>
+        <mat-label>Fill Score</mat-label>
+        <input type="number" matInput name="score" formControlName="score">
+        <mat-error>Add A valid score </mat-error>
+        <mat-hint>ex. 0,1,2...9</mat-hint>
+    </mat-form-field>
+   </div> 
+    <!-- feeback -->
+    <div class="col">
+        <mat-form-field>
+            <mat-label>Feeback</mat-label>
+            <input type="text" matInput name="feedback" formControlName="feedback">
+            <mat-error>Add A valid feeback </mat-error>
+            <mat-hint>ex. Keep work, excellence</mat-hint>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+<button mat-flat-button color="warn" (click)="close()">Cancel</button>&nbsp;
+<button  mat-flat-button color="primary" (click)="addScore()">Add</button>
+</mat-dialog-actions>
