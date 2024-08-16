@@ -20,5 +20,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 <button mat-flat-button color="warn" (click)="close()">Cancel</button>&nbsp;
-<button  mat-flat-button color="primary" (click)="addScore()">Add</button>
+<button  mat-flat-button [disabled]="!scoreForm.valid" color="primary" (click)="addScore()">Add</button>
 </mat-dialog-actions>

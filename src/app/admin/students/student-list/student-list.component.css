@@ -1,0 +1,22 @@
+table{
+    font-size: smaller;
+    border-collapse: collapse;
+}
+
+table td{
+    font-size: smaller;  
+}
+
+table td.row-active {
+    font-weight: bold;
+    color: #009879;
+}
+
+td:hover{
+    cursor: pointer;
+    color: #009879;
+    font-size: smaller;  
+    transition: none;
+}
+
+  

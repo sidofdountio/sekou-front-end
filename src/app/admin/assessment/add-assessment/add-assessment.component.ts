@@ -82,6 +82,8 @@ export class AddAssessmentComponent implements OnInit {
   onSaveAssessment() {
     let assessmentToSave: Assessment = {
       id: 0,
+      startTime: this.assessmentForm.value.startTime,
+      endTime: this.assessmentForm.value.endTime,
       assessmentType: this.assessmentForm.value.assessmentType as any,
       year: this.assessmentForm.value.year,
       level: {
@@ -98,8 +100,6 @@ export class AddAssessmentComponent implements OnInit {
         title: '',
         credit: 0,
       },
-      startTime: this.assessmentForm.value.startTime,
-      endTime: this.assessmentForm.value.endTime,
       assessmentPeriod: {
         id: this.periodId,
         date: this.date,
@@ -113,6 +113,7 @@ export class AddAssessmentComponent implements OnInit {
       next: (response => {
         this.isLoading.next(false)
         this.notifier.onSuccess(response.message);
+        this.notifier.onInfo("Kepep Added Assessment For This Period.");
         this.assessmentForm.reset();
       }),
       error: any => {

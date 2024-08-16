@@ -25,14 +25,19 @@ export class StudentListComponent implements OnInit, AfterViewInit {
   // Object
   students: Student[] = [];
   readonly DataSate = DataState;
+  protected readonly DataState = DataState;
   private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Student>([]);
   appState$: Observable<AppState<CustomResponse>>;
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'level', 'option', 'gender', 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'level', 'option', 'gender','age', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private router: Router,private studentService:StudentService, private notificationService:NotificationService) { }
+  constructor(
+    private dialog: MatDialog, 
+    private router: Router,
+    private studentService:StudentService, 
+    private notificationService:NotificationService) { }
 
   ngOnInit(): void {
     this.appState$ = this.studentService.students$.pipe(
@@ -109,5 +114,4 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     this.router.navigate(["admin/student-edit/",id]);
   }
 
-  protected readonly DataState = DataState;
 }

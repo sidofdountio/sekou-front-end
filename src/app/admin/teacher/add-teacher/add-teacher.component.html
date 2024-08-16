@@ -2,50 +2,53 @@
     <h1 class="mat-1">
         <button mat-icon-button routerLink="./" routerLinkActive="active"
             matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>
-        Teacher
+        Save New Teacher
     </h1>
     <div class="row">
-        <div class="form d-flex justify-content-center" [formGroup]="teacherForm">
-            <div class="col">
-                <div class="mb-2">
-                    <mat-form-field>
-                        <mat-label>Last Name</mat-label>
-                        <input type="text" matInput formControlName="lastName">
-                        <mat-error>You must a valid name</mat-error>
-                    </mat-form-field>
+        <div class="d-flex justify-content-center " [formGroup]="teacherForm">
+            <div class="card p-4" style="max-width: 900px ;">
+                <div class="row">
+                    <!-- First col -->
+                <div class="col">
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Last Name</mat-label>
+                            <input type="text" matInput formControlName="lastName">
+                            <mat-error>You must a valid name</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>First Name</mat-label>
+                            <input type="text" matInput formControlName="firstName">
+                            <mat-error>You must a valid name</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- click button -->
+                    <div class="mb-2">
+                        <button (click)="onSave()" mat-raised-button color="primary"
+                            [disabled]="!teacherForm.valid">save</button>
+                    </div>
                 </div>
-                <div class="mb-2">
-                    <mat-form-field>
-                        <mat-label>First Name</mat-label>
-                        <input type="text" matInput formControlName="firstName">
-                        <mat-error>You must a valid name</mat-error>
-                    </mat-form-field>
+                <!-- Second col -->
+                <div class="col">
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput formControlName="email">
+                            <mat-error>You must a valid email</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <mat-form-field>
+                            <mat-label>Phone</mat-label>
+                            <input type="tel" matInput formControlName="phone">
+                            <mat-error>You must a valid phone</mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <!-- click button -->
-                <div class="mb-2">
-                    <button (click)="onSave()" mat-raised-button color="primary" [disabled]="!teacherForm.valid">save</button>
-                </div>
-            </div>
-
-
-            <div class="col">
-                <div class="mb-2">
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input type="email" matInput formControlName="email" >
-                        <mat-error>You must a valid email</mat-error>
-                    </mat-form-field>
-                </div>
-
-                <div class="mb-2">
-                    <mat-form-field>
-                        <mat-label>Phone</mat-label>
-                        <input type="tel" matInput formControlName="phone">
-                        <mat-error>You must a valid phone</mat-error>
-                    </mat-form-field>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

@@ -10,34 +10,34 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class StudentAssessmentAddComponent {
 
-scoreForm = this.fb.group({
-  score: [0,[Validators.required]],
-  feedback: ["",[Validators.required]]
-});
+  scoreForm = this.fb.group({
+    score: [0, [Validators.required]],
+    feedback: ["", [Validators.required]]
+  });
 
-constructor(private fb:FormBuilder,
-  @Inject(MAT_DIALOG_DATA)data:number,
-  public dialogRef:MatDialogRef<StudentAssessmentAddComponent>
-){}
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) data: number,
+    public dialogRef: MatDialogRef<StudentAssessmentAddComponent>
+  ) { }
 
 
-addScore() {
-  let formValue: {
-    score:number,
-    feeback:string
+  addScore() {
+
+    let formValue: ScoreFeeback = {
+      score: this.scoreForm.value.score,
+      feeback: this.scoreForm.value.feedback
+    }
+    this.dialogRef.close(formValue);
   }
-  formValue={
-    score : this.scoreForm.value.score,
-    feeback:this.scoreForm.value.feedback
+
+
+  close() {
+    this.dialogRef.close();
   }
-  this.dialogRef.close(formValue as any);
+
 }
 
-
-close() {
-  this.dialogRef.close();
-}
-
-
-  
+export interface ScoreFeeback {
+  score: number;
+  feeback: string;
 }

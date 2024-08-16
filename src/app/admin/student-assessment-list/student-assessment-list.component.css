@@ -1,3 +1,15 @@
 button{
     border-radius: 20px;
 }
+
+table{
+    width: 100%;
+}
+
+table td{
+    font-size: small;
+}
+table .score{
+    color: #009578;
+    font-weight: 700;
+}

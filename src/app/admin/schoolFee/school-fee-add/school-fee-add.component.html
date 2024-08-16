@@ -1,0 +1,54 @@
+<h3 mat-dialog-title>Save School Fee</h3>
+<mat-dialog-content [formGroup]="schoolFeeForm">
+    <div class="row">
+        <!-- First col -->
+        <div class="col">
+            <!-- level -->
+            <div class="mb-2" formGroupName="level">
+                <mat-form-field>
+                    <mat-label>Select Level</mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- option -->
+            <div class="mb-2" formGroupName="option">
+                <mat-form-field>
+                    <mat-label>Select option</mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name | uppercase}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- second col -->
+        <div class="col">
+            <div class="mb-2">
+                <!-- register fee -->
+                <mat-form-field>
+                    <mat-label>Register Fee</mat-label>
+                    <input type="number" matInput formControlName="registerFee">
+                    <mat-error>Valid number please</mat-error>
+                </mat-form-field>
+            </div><!-- end register fee -->
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Total School Fee</mat-label>
+                    <input type="number" matInput formControlName="totalSchoolFee">
+                    <mat-error>Valid number please</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button matTooltip="Cancel" mat-raised-button color="warn" (click)="onClose()">Cancel</button>&nbsp;&nbsp;
+    <button type="submit" mat-raised-button color="primary" [disabled]="!schoolFeeForm.valid" matTooltip="save"
+        (click)="onSave()">Save</button>
+        
+    <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Saving...
+    </button>
+</mat-dialog-actions>

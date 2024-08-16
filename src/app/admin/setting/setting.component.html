@@ -1,8 +1,21 @@
-<div class="container p-4">
-    <h1 class="mat-1">
-        <button mat-icon-button routerLink="../admin" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>Settings</h1>
-    <div class="row mb-2">
-        <p class="text-info">This Page help to create or setting a lot of configuration like: Adding new Level, Option, Speciality and Course</p>
+<div class="container">
+    <div class="row">
+        <h1 class="mat-1">
+            <button mat-icon-button routerLink="../admin"
+                matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>Settings
+        </h1>
+        <p class="text-bg-info">This Page help to create or setting a lot of configuration like: Adding new Level,
+            Option,
+            Speciality and Course</p>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <button mat-icon-button (click)="enableStting()"><mat-icon>edit</mat-icon> </button>
+        </div>
+    </div>
+    <div class="row">
+
         <!-- speciality -->
         <div class="col-lg-4 col-md-4">
             <div class="form-speciality card">
@@ -10,6 +23,7 @@
                 <div class="row ">
                     <div class="col" [formGroup]="specialityForm">
                         <div class="mb-3">
+
                             <mat-form-field>
                                 <input type="text" matInput formControlName="name" />
                                 <mat-label>speciality name</mat-label>
@@ -18,7 +32,8 @@
                             </mat-form-field>
                         </div>
                         <div class="">
-                            <button (click)="onSaveSpciality()" mat-raised-button color="accent" type="submit" [disabled]="!specialityForm.valid">Add New Speciality</button>
+                            <button (click)="onSaveSpciality()" mat-raised-button color="accent" type="submit"
+                                [disabled]="!specialityForm.valid">Add New Speciality</button>
                         </div>
                     </div>
                 </div>
@@ -27,12 +42,12 @@
         <!-- option -->
         <div class="col-lg-8 col-md-8">
             <div class="form-option card">
-                <h3 class="">Add new option  </h3>
-                
+                <h3 class="">Add new option </h3>
+
                 <div class="row" [formGroup]="optionForm">
                     <div class="col">
                         <div class="mb-3 ">
-                            <mat-form-field >
+                            <mat-form-field>
                                 <input type="text" matInput formControlName="name" />
                                 <mat-label>Option name</mat-label>
                                 <mat-error>Provide option name</mat-error>
@@ -41,17 +56,19 @@
                         </div>
                     </div>
                     <div class="col" formGroupName="speciality">
-                        
+
                         <mat-form-field>
                             <mat-label>Select Speciality</mat-label>
                             <mat-select formControlName="id">
-                                <mat-option *ngFor="let specialty of specialitys" [value]="specialty.id" > {{ specialty.name }}</mat-option>
+                                <mat-option *ngFor="let specialty of specialitys" [value]="specialty.id"> {{
+                                    specialty.name }}</mat-option>
                             </mat-select>
                             <mat-error>You must select a speciality</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="">
-                        <button (click)="onSaveOption()" mat-raised-button color="accent" type="submit" [disabled]="!optionForm.valid">Add New Option</button>
+                        <button (click)="onSaveOption()" mat-raised-button color="accent" type="submit"
+                            [disabled]="!optionForm.valid">Add New Option</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +82,7 @@
                 <div class="row ">
                     <div class="col" [formGroup]="levelForm">
                         <div class="mb-2">
-                            <mat-form-field >
+                            <mat-form-field>
                                 <input type="text" matInput formControlName="name">
                                 <mat-label>Level name</mat-label>
                                 <mat-hint>ex. Level 1, Master, Licence</mat-hint>
@@ -73,21 +90,22 @@
                             </mat-form-field>
                         </div>
                         <div class="mb-2">
-                            <button (click)="onSaveLevel()" mat-raised-button color="warn" type="submit" [disabled]="!levelForm.valid">Add New
+                            <button (click)="onSaveLevel()" mat-raised-button color="warn" type="submit"
+                                [disabled]="!levelForm.valid">Add New
                                 Level</button>
                         </div>
                     </div>
                 </div>
             </div><!-- End level -->
         </div><!-- End Level  -->
-       <!-- Course  -->
+        <!-- Course  -->
         <div class="col-lg-8 col-md-8">
             <div class="form-course card">
                 <h3 class="mat-3">Create New Course</h3>
                 <div class="row " [formGroup]="courseForm">
                     <div class="col">
                         <div class="mb-2">
-                            <mat-form-field >
+                            <mat-form-field>
                                 <input matInput formControlName="title">
                                 <mat-label>Course name or Title</mat-label>
                                 <mat-hint>ex. Maths, Comptabilite General, Algo 1,2</mat-hint>
@@ -97,7 +115,7 @@
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                            <mat-form-field >
+                            <mat-form-field>
                                 <input matInput formControlName="credit" type="number">
                                 <mat-label>Course credit</mat-label>
                                 <mat-hint>ex. 1, 2, 4</mat-hint>
@@ -106,10 +124,27 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <button (click)="onSaveCourse()" mat-raised-button color="warn" type="submit" [disabled]="!courseForm.valid">Add New
+                        <button (click)="onSaveCourse()" mat-raised-button color="warn" type="submit"
+                            [disabled]="!courseForm.valid">Add New
                             Course</button>
                     </div>
                 </div>
             </div>
         </div><!-- end Course -->
+        <hr>
+        <div class="row">
+            <h3>Actived School Year</h3>
+            <div class="col">
+                <div class="mb-3">
+                    <mat-form-field>
+                        <input matInput type="number">
+                        <mat-label>School Year</mat-label>
+                        <mat-hint>ex. 2024, 2025</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="mb-2">
+                    <button mat-raised-button color="accent">Valid</button>
+                </div>
+            </div>
+        </div>
     </div>

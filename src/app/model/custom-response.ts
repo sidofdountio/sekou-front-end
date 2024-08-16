@@ -6,9 +6,11 @@ import { CourseOffering } from "./course-offering";
 import { Level } from "./level";
 import { Option } from "./option";
 import { Register } from "./register";
+import { SchoolFee } from "./school-fee";
 import { Speciality } from "./speciality";
 import { Student } from "./student";
 import { StudentAssessment } from "./student-assessment";
+import { StudentSchoolFee } from "./student-school-fee";
 import { Teacher } from "./teacher";
 
 export interface CustomResponse {
@@ -29,5 +31,7 @@ export interface CustomResponse {
         assessment?:Assessment,assessments?:Assessment[],
         studentAssessment?:StudentAssessment,studentAssessments?:StudentAssessment[],
         period?:AssessmentPeriod,periods?:AssessmentPeriod[],
+        schoolFee?:SchoolFee,schoolFees?:SchoolFee[],
+        studentSchoolFee?:StudentSchoolFee, studentSchoolFees?:StudentSchoolFee[]
     };
 }

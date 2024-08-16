@@ -45,7 +45,6 @@ import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-co
 import { TeachersComponent } from './teacher/teachers/teachers.component';
 import { AddTeacherComponent } from './teacher/add-teacher/add-teacher.component';
 import { EditTeacherComponent } from './teacher/edit-teacher/edit-teacher.component';
-import { AssessmentListComponent } from './assessment/assessment-list/assessment-list.component';
 import { AddAssessmentComponent } from './assessment/add-assessment/add-assessment.component';
 import { EditeAssessmentComponent } from './assessment/edite-assessment/edite-assessment.component';
 import { AssessmentPeriodComponent } from './assessment/assessment-period/assessment-period.component';
@@ -54,6 +53,12 @@ import { StudentAssessmentComponent } from './student-assessment-list/student-as
 import { StudentAssessmentListComponent } from './student-assessment-list/student-assessment-list.component';
 import { StudentAssessmentAddComponent } from './student-assessment-list/student-assessment-add/student-assessment-add.component';
 import { SaveStudentAssessmentComponent } from './student-assessment-list/save-student-assessment/save-student-assessment.component';
+import { SchoolFeeListComponent } from './schoolFee/school-fee-list/school-fee-list.component';
+import { SchoolFeeAddComponent } from './schoolFee/school-fee-add/school-fee-add.component';
+import { SchoolFeeEditComponent } from './schoolFee/school-fee-edit/school-fee-edit.component';
+import { StudentSchoolFeeListComponent } from './studentSchoolFee/student-school-fee-list/student-school-fee-list.component';
+import { StudentSchoolFeeAddComponent } from './studentSchoolFee/student-school-fee-add/student-school-fee-add.component';
+import { StudentSchoolFeeEditComponent } from './studentSchoolFee/student-school-fee-edit/student-school-fee-edit.component';
 
 
 @NgModule({
@@ -77,7 +82,6 @@ import { SaveStudentAssessmentComponent } from './student-assessment-list/save-s
     TeachersComponent,
     AddTeacherComponent,
     EditTeacherComponent,
-    AssessmentListComponent,
     AddAssessmentComponent,
     EditeAssessmentComponent,
     AssessmentPeriodComponent,
@@ -85,7 +89,13 @@ import { SaveStudentAssessmentComponent } from './student-assessment-list/save-s
     StudentAssessmentComponent,
     StudentAssessmentListComponent,
     StudentAssessmentAddComponent,
-    SaveStudentAssessmentComponent
+    SaveStudentAssessmentComponent,
+    SchoolFeeListComponent,
+    SchoolFeeAddComponent,
+    SchoolFeeEditComponent,
+    StudentSchoolFeeListComponent,
+    StudentSchoolFeeAddComponent,
+    StudentSchoolFeeEditComponent
 
   ],
   imports: [

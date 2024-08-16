@@ -5,84 +5,100 @@
         </button>
         Course Offering
     </h1>
-    <div class="row p-4">
-        <div class="d-flex justify-content-center form" [formGroup]="courseOfferingForm">
-            <!-- start col -->
-            <div class="col">
-                <div class="mb-2" formGroupName="level">
-                    <mat-form-field>
-                        <mat-label>Select Level</mat-label>
-                        <mat-select formControlName="id">
-                            <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="mb-2" formGroupName="course">
-                    <mat-form-field>
-                        <mat-label>Select Course</mat-label>
-                        <mat-select formControlName="id">
-                            <mat-option *ngFor="let course of courses" [value]="course.id">{{course.title}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="mb-2">
-                    <mat-form-field>
-                        <mat-label>Select Day</mat-label>
-                        <mat-select formControlName="day">
-                            <mat-option value="MONDAY">Monday</mat-option>
-                            <mat-option value="TUESDAY">Tuesday</mat-option>
-                            <mat-option value="WEDNESDAY">Wednesday</mat-option>
-                            <mat-option value="THURSDAY">Thursday</mat-option>
-                            <mat-option value="FRIDAY">Friday</mat-option>
-                            <mat-option value="SATURDAY">Satuday</mat-option>
-                            <mat-option value="SUNDAY">Sunday</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="mb-2">
-                    <label for="" class="form-label">End time</label>
-                    <input type="time" class="form-control" formControlName="endTime">
-                </div>
-                
-                <!-- click button -->
-                <div class="mb-2">
-                    <button *ngIf="!(loading$ | async )" (click)="onSave()" mat-raised-button color="primary" class="custorm-button"
-                        [disabled]="!courseOfferingForm.valid">save</button>
-                    <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Saving...
-                    </button>
+    <div class="row">
+        <div class="d-flex justify-content-center" [formGroup]="courseOfferingForm">
+
+            <div class="card p-4" style="max-width: 900px;">
+                <div class="row">
+                    <!-- start col -->
+                    <div class="col">
+                        <div class="mb-2" formGroupName="level">
+                            <mat-form-field>
+                                <mat-label>Select Level</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-2" formGroupName="course">
+                            <mat-form-field>
+                                <mat-label>Select Course</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let course of courses"
+                                        [value]="course.id">{{course.title}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Select Day</mat-label>
+                                <mat-select formControlName="day">
+                                    <mat-option value="MONDAY">Monday</mat-option>
+                                    <mat-option value="TUESDAY">Tuesday</mat-option>
+                                    <mat-option value="WEDNESDAY">Wednesday</mat-option>
+                                    <mat-option value="THURSDAY">Thursday</mat-option>
+                                    <mat-option value="FRIDAY">Friday</mat-option>
+                                    <mat-option value="SATURDAY">Satuday</mat-option>
+                                    <mat-option value="SUNDAY">Sunday</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">End time</label>
+                            <input type="time" class="form-control" formControlName="endTime">
+                        </div>
+
+                        <!-- click button -->
+                        <div class="mb-2">
+                            <button *ngIf="!(loading$ | async )" (click)="onSave()" mat-raised-button color="primary"
+                                class="custorm-button" [disabled]="!courseOfferingForm.valid">save</button>
+                            <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Saving...
+                            </button>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col">
+                        <!-- option -->
+                        <div class="mb-2" formGroupName="option">
+                            <mat-form-field>
+                                <mat-label>Select option</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name |
+                                        uppercase
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <!-- Teacher -->
+                        <div class="mb-2" formGroupName="teacher">
+                            <mat-form-field>
+                                <mat-label>Select Teacher</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{
+                                        teacher.lastName
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <!-- StartTime -->
+                        <div class="mb-2">
+                            <label for="" class="form-label">Start time</label>
+                            <input type="time" class="form-control" formControlName="startTime">
+                        </div>
+                        <!-- year -->
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>School Year</mat-label>
+                                <input type="number" matInput formControlName="year" [placeholder]="currentYear">
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- end col -->
-            <!-- option -->
-            <div class="col">
-                <div class="mb-2" formGroupName="option">
-                    <mat-form-field>
-                        <mat-label>Select option</mat-label>
-                        <mat-select formControlName="id">
-                            <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name | uppercase
-                                }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <!-- Teacher -->
-                <div class="mb-2" formGroupName="teacher">
-                    <mat-form-field>
-                        <mat-label>Select Teacher</mat-label>
-                        <mat-select formControlName="id">
-                            <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{ teacher.lastName
-                                }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <!-- StartTime -->
-                <div class="mb-2">
-                    <label for="" class="form-label">Start time</label>
-                    <input type="time" class="form-control" formControlName="startTime">
-                </div>
-               
-            </div>
+
         </div>
     </div>
 </div>

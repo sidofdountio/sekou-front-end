@@ -1,14 +1,17 @@
-mat-form-field{
-    width: 300px;
+.card {
+    box-shadow: 5px 5px 5px #333;
+    border: 1px solid #ccc;
+    background: #FFF;
 }
 
-.form{
-    padding: 14px;
-    box-shadow: 3px 3px 3px #333;
-    border-radius: 15px;
-    border: 1px solid #eee;
+mat-form-field {
+    width: 400px;
+    color: blue;
+    font-weight: bold;
 }
 
-button{
- border-radius: 20px;
+
+
+button {
+    border-radius: 20px;
 }

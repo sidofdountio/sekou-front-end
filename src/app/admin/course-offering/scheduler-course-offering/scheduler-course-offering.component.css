@@ -1,19 +1,16 @@
-.form {
+.card {
     box-shadow: 5px 5px 5px #333;
-    margin-left: 200px;
-    width: 700px;
-    border-radius: 15px;
-    padding: 8px 8px 8px 8px;
     border: 1px solid #ccc;
     background: #FFF;
 }
 
 mat-form-field {
-    width: 300px;
+    width: 400px;
     color: blue;
+    font-weight: bold;
 }
 
 input {
-    width: 300px;
+    width: 400px;
     color: blue;
 }

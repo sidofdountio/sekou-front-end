@@ -8,7 +8,7 @@ export interface Student {
     lastName:string;
     email:string;
     dateOfBirth?: Date;
-    level:Level;
+    level?:Level;
     option?:Option;
     gender?:Gender;
     age?:number;
@@ -17,6 +17,7 @@ export interface Student {
     currentGradeLevel?:string;
     phoneNumber?:string;
     address?:string;
+    
 
 
     

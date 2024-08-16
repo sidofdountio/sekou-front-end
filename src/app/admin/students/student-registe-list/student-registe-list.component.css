@@ -1,0 +1,12 @@
+table{
+    width: 100%;
+}
+
+table td{
+    font-size: small;
+}
+
+table .number{
+    font-weight: 800;
+    color: green;
+}

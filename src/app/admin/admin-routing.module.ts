@@ -19,6 +19,8 @@ import { AssessmentsComponent } from './assessment/assessments/assessments.compo
 import { StudentAssessmentListComponent } from './student-assessment-list/student-assessment-list.component';
 import { StudentAssessmentComponent } from './student-assessment-list/student-assessment/student-assessment.component';
 import { SaveStudentAssessmentComponent } from './student-assessment-list/save-student-assessment/save-student-assessment.component';
+import { SchoolFeeListComponent } from './schoolFee/school-fee-list/school-fee-list.component';
+import { StudentSchoolFeeListComponent } from './studentSchoolFee/student-school-fee-list/student-school-fee-list.component';
 
 const routes: Routes = [
   {
@@ -117,6 +119,16 @@ const routes: Routes = [
             path: 'save-student-assessment/:level/:option/:course/:exam/:year',
             component: SaveStudentAssessmentComponent,
             title: 'save-student-assessment'
+          },
+          {
+            path: 'school-fee',
+            component: SchoolFeeListComponent,
+            title: 'School-Fee'
+          },
+          {
+            path: 'student-school-fee',
+            component: StudentSchoolFeeListComponent,
+            title: 'Student-School-Fee'
           },
         ]
       }

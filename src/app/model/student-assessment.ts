@@ -1,4 +1,5 @@
 import { Course } from "./course";
+import { Appreciation } from "./enumeration/appreciation";
 import { AssessmentType } from "./enumeration/assessment-type";
 import { Level } from "./level";
 import { Option } from "./option";
@@ -14,5 +15,5 @@ export interface StudentAssessment {
     student:Student;
     feedback:string;
     score:number;
-    appreciation?:any;
+    appreciation?:Appreciation;
 }

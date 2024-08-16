@@ -16,8 +16,8 @@ import { SpecialityService } from 'src/app/service/speciality.service';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
+  desable:boolean=true;
   specialitys: Speciality[];
-
   specialityForm = this.fbuild.group({
     name: ['', [Validators.required]]
 
@@ -48,7 +48,6 @@ export class SettingComponent implements OnInit {
 
     this.levelService.levels$.subscribe(
       (response) => {
-        this.serviceNotifier.onDefault(response.message);
       },
       (error) => {
         console.error("error %d", error);
@@ -154,6 +153,10 @@ export class SettingComponent implements OnInit {
         console.error('error %d', error);
       }
     )
+  }
+
+  enableStting():void{
+    this.desable= !this.desable;
   }
 
 }

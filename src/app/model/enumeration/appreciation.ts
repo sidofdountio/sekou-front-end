@@ -1,0 +1,7 @@
+export enum Appreciation{
+    BELOWAVERA="BELOWAVERA",
+    WEAK="WEAK",
+    FAIRLYGOOD="FAIRLYGOOD",
+    GOOD="GOOD",
+    VERYGOOD="VERYGOOD"
+}

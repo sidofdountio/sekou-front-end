@@ -28,7 +28,7 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
   private dataSubject: BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Student>([]);
   appState$: Observable<AppState<CustomResponse>>;
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'level', 'option', 'gender', 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName',  'level', 'option', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   levelId: number;
@@ -48,7 +48,7 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+// TODO: Display only valid student. Does who has been alredy been reggisted for the current year school.
   ngOnInit(): void {
     this.levelId = parseInt(this.route.snapshot.paramMap.get("level"));
     this.optionId = parseInt(this.route.snapshot.paramMap.get("option"));
@@ -80,10 +80,9 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
     this.dialog.open(StudentAssessmentAddComponent, dialogConf).afterClosed()
       .subscribe(
         (response) => {
-          if(response == undefined){                                                              
-          }else{
-            console.log(response);
-            this.onSaveStudentAssessment(student,response.score,response.feedback)
+          if(response !== undefined){   
+            // console.log(response);
+            this.onSaveStudentAssessment(student,response.score,response.feedback);                                                        
           }
         }
       );
@@ -93,7 +92,11 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
   onSaveStudentAssessment(student: Student,score:number,feedback:string) {
     let studentAssessment: StudentAssessment = {
       id: 0,
-      year: undefined,
+      year: this.year,
+      assessmentType: this.exam as any,
+      feedback: feedback,
+      score: score,
+      appreciation: undefined,
       level: {
         id:  this.levelId,
         name: ''
@@ -107,7 +110,6 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
         title: '',
         credit: 0
       },
-      assessmentType: this.exam as any,
       student: {
         id: student.id,
         firstName: student.firstName,
@@ -123,16 +125,17 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
           id: student.option.id,
           name:student.option.name
         }    
-      },
-      feedback: feedback,
-      score: score
-    }
+      }
+    };
+
     this.isLoading.next(true);
+
     this.studentAssementService.save$(studentAssessment).subscribe(
       {
         next: (
           response=>{
             this.notifier.onSuccess(response.message);
+            this.notifier.onInfo("Kepep Added Student Assessment For Class.");
             this.isLoading.next(false);
           }
         ),
@@ -141,7 +144,7 @@ export class SaveStudentAssessmentComponent implements OnInit, AfterViewInit {
           this.isLoading.next(false);
         })
       }
-    )
+    );
   }
 
 }

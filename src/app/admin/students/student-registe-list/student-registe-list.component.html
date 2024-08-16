@@ -17,7 +17,7 @@
           <button matTooltip="Export register Student" (click)="OnExport()" mat-icon-button c
             class="box-shadow text-bg-success"> <mat-icon>description</mat-icon></button>
           <span class="">Student number 1</span>
-         
+
           <span>Student Option</span>
           <span>Student Mal</span>
         </div>
@@ -59,24 +59,26 @@
               </ng-container>
               <!-- dob -->
               <ng-container matColumnDef="stardDate">
-                <th mat-header-cell *matHeaderCellDef>Year</th>
-                <td mat-cell *matCellDef="let register">{{ register?.startDate }}-{{ register?.endDate }}</td>
+                <th mat-header-cell *matHeaderCellDef>School Year</th>
+                <td mat-cell *matCellDef="let register">{{ register?.startDate }}&nbsp;{{ register?.endDate }}</td>
               </ng-container>
               <!-- level -->
               <ng-container matColumnDef="level">
                 <th mat-header-cell *matHeaderCellDef>Level</th>
-                <td mat-cell *matCellDef="let register">{{ register?.student?.curentLevel }}</td>
+                <td mat-cell *matCellDef="let register">{{ register?.student?.level?.name }}</td>
               </ng-container>
 
               <!-- option -->
               <ng-container matColumnDef="option">
                 <th mat-header-cell *matHeaderCellDef>Option</th>
                 <td mat-cell *matCellDef="let register">{{ register.student?.option?.name }}</td>
+                <!-- fee -->
               </ng-container>
               <ng-container matColumnDef="feeRegister">
                 <th mat-header-cell *matHeaderCellDef>Fee</th>
-                <td mat-cell *matCellDef="let register">{{ register?.feeRegister}}</td>
+                <td class="number" mat-cell *matCellDef="let register"> {{ register?.feeRegister | currency}}</td>
               </ng-container>
+
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Actions</th>
                 <td mat-cell *matCellDef="let student">
@@ -87,7 +89,7 @@
                       <button mat-icon-button><mat-icon>edit</mat-icon></button>
                     </button>
                     <button matTooltip="View student profile" mat-menu-item (click)="onProfile(student.id)">
-                      <button mat-icon-button><mat-icon></mat-icon></button>
+                      <button mat-icon-button><mat-icon>infos</mat-icon></button>
                     </button>
                   </mat-menu>
                 </td>

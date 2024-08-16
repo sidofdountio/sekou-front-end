@@ -33,6 +33,7 @@ export class AddStudentComponent {
     }
     this.dialogRef.close(this.studentReq.value as StudentRequest);
   }
+  
   onClose() {
     this.dialogRef.close();
   }
