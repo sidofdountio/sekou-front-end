@@ -23,9 +23,9 @@ import { StudentService } from 'src/app/service/student.service';
 
 export class RegisterStudent2Component implements OnInit {
   options: Option[];
+  levels: Level[];
   isLoading = new BehaviorSubject<boolean>(false);
   loading$ = this.isLoading.asObservable();
-  levels: Level[];
   message: string;
   student: Student = {
     id: 0,
@@ -68,7 +68,6 @@ export class RegisterStudent2Component implements OnInit {
         console.log(response.data.student)
       }, () => { }
     );
-
     // Fetch level.
     this.levelService.levels$.subscribe(
       (response) => { this.levels = response.data.levels; },

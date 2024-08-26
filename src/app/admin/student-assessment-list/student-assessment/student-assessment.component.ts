@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { StudentAssessmentService } from 'src/app/service/student-assessment.service';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, startWith, catchError } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Option } from 'src/app/model/option';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Course } from 'src/app/model/course';
 import { Level } from 'src/app/model/level';
-import { AssessmentService } from 'src/app/service/assessment.service';
 import { CourseService } from 'src/app/service/course.service';
 import { LevelService } from 'src/app/service/level.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -15,6 +11,13 @@ import { OptionService } from 'src/app/service/option.service';
 
 
 /**
+ * When recording button is clicked on student assessment list this page appear.
+ * Heere you you will be able to fill details about the class assissement:
+ *  +Course
+ *  +Option
+ *  +Level
+ *  +Year
+ *  +ExamType
  * Register student mark for assessment.
  * This componnent will be used to save student note (mark) for each exam and year school
  */
@@ -52,7 +55,6 @@ export class StudentAssessmentComponent implements OnInit {
     private optionService: OptionService,
     private notifier: NotificationService,
     private courseService: CourseService,
-    private assessmentService: AssessmentService,
     private router: Router
   ) { }
 

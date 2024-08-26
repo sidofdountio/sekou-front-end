@@ -5,10 +5,10 @@ button{
 table{
     width: 100%;
 }
-
-table td{
-    font-size: small;
+table th{
+    font-weight: bold;
 }
+
 table .score{
     color: #009578;
     font-weight: 700;

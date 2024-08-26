@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Register } from 'src/app/model/register';
-import { RegisteStudentComponent } from '../registe-student/registe-student.component';
 import { NotificationService } from 'src/app/service/notification.service';
 import { RegisterService } from 'src/app/service/register.service';
 import { AppState } from 'src/app/model/appState';
@@ -13,8 +12,6 @@ import { CustomResponse } from 'src/app/model/custom-response';
 import { DataState } from 'src/app/model/enumeration/dataState';
 import {BehaviorSubject, Observable , of} from 'rxjs';
 import {  map, startWith, catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-
 
 /**
  * This component liste register student not save.
@@ -25,12 +22,11 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './student-registe-list.component.html',
   styleUrls: ['./student-registe-list.component.css']
 })
-
 export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   loading = new BehaviorSubject<boolean>(false);
   isLoading$ = this.loading.asObservable();
   appState$: Observable<AppState<CustomResponse>>;
-  readonly DataSate = DataState;
+  protected readonly DataState = DataState;
   private dataSubject:BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   dataSource = new MatTableDataSource<Register>([]);
   displayedColumns: string[] = ['firstName', 'lastName', 'valid', 'stardDate', 'level', 'option', 'feeRegister', 'action'];
@@ -59,88 +55,9 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this,this.dataSource.paginator = this.paginator;
   }
+ 
+
   
-
-  /**
-   * Method to reigist a student.
-   * @constructor
-   */
-  OnRegister() {
-    // registe object
-    let register: Register={
-      feeRegister: 0,
-      valid: false,
-      registerDate: undefined,
-      startDate: 0,
-      endDate: 0,
-      student: {
-        id: 0,
-        firstName: '',
-        lastName: '',
-        email: '',
-        dateOfBirth: undefined,
-        level: {
-          id: 0,
-          name: ''
-        },
-        option: {
-          id: 0,
-          name: '',
-          speciality: {
-            id: 0,
-            name: ''
-          }
-        }
-      },
-      level: {
-        id: 0,
-        name: ''
-      },
-      option: {
-        id: 0,
-        name: '',
-        speciality: {
-          id: 0,
-          name: ''
-        }
-      }
-    };
-    const dialogConf = new MatDialogConfig();
-    dialogConf.closeOnNavigation = true;
-    dialogConf.autoFocus = true;
-    dialogConf.disableClose = true;
-    dialogConf.data = register;
-    this.dialog.open(RegisteStudentComponent, dialogConf).afterClosed()
-    .subscribe(response=>{
-      if(response !== undefined){
-        this.saveRegistration(response);
-      }
-    })
-      
-  }
-
-  /**
-   * Handler service to save a register.
-   */
-  saveRegistration(regiterStudent:Register) {
-    this.loading.next(true);
-    this.registerService.save$(regiterStudent).subscribe(
-      {
-        next: (response=>{
-          this.notificationService.onSuccess(response.message);
-          this.loading.next(false);
-          this.appState$.subscribe();
-          
-        }),
-         error : (error:HttpErrorResponse)=>{
-          this.notificationService.onError("cannot register");
-          console.log("error "+ error);
-          this.loading.next(true);
-         }
-      }
-    )
-  }
-
 
   onProfile(arg0: any) {
   }
@@ -151,5 +68,5 @@ export class StudentRegisteListComponent implements OnInit, AfterViewInit {
   OnExport() {
   }
 
-  protected readonly DataState = DataState;
+  
 }

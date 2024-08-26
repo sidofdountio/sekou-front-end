@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./website.component.css']
 })
 export class WebsiteComponent {
-
+  currentDate:any;
+  constructor(){
+    this.currentDate = new Date();
+  }
 }

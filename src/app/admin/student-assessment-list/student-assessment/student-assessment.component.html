@@ -1,90 +1,86 @@
 <div class="container">
     <h1>
-        Student Assement
+        <button mat-icon-button routerLink="/admin/student-assessment" matTooltip="Go back">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        Dashbord/Student Assessemnt/Assissment Details
     </h1>
-    <div class="row">
-        <div class="text-bg-info">
-            First Step
+    <div class="row mb-2">
+        <div class="text-bg-info fw-bold">
+            First Step 1
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="form p-4" [formGroup]="studentAssessmentForm">
-            <div class="row">
-                <div class="col">
-                    <!-- start date -->
-                    <!-- end -->
-                    <!-- course -->
-                    <div class="mb-2" formGroupName="course">
-                        <mat-form-field>
-                            <mat-label>Select course</mat-label>
-                            <mat-select formControlName="id">
-                                <mat-option *ngFor="let course of courses" [value]="course.id">{{ course.title
-                                    }}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div><!-- end -->
-                    <!-- Level -->
-                    <div class="mb-2" formGroupName="level">
-                        <mat-form-field>
-                            <mat-label>Select Level</mat-label>
-                            <mat-select formControlName="id">
-                                <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name }}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div><!-- end -->
-                    <!-- exam type -->
+        <div class="card">
+            <div class=" p-4" [formGroup]="studentAssessmentForm">
+                <div class="row mb-2">
+                    <div class="col">
+                        <!-- course -->
+                        <div class="mb-2" formGroupName="course">
+                            <mat-form-field>
+                                <mat-label>Select course</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let course of courses" [value]="course.id">{{ course.title
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div><!-- end -->
+                        <!-- Level -->
+                        <div class="mb-2" formGroupName="level">
+                            <mat-form-field>
+                                <mat-label>Select Level</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div><!-- end -->
+                        <!-- exam type -->
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>Select Exam Type</mat-label>
+                                <mat-select formControlName="assessmentType">
+                                    <mat-option value="EXAM">Exam</mat-option>
+                                    <mat-option value="PROJECT">Project</mat-option>
+                                    <mat-option value="ASSIGNMENT">Assignment</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div><!-- end -->
+                    </div>
+                    <div class="col">
+                        <!-- option -->
+                        <div class="mb-2" formGroupName="option">
+                            <mat-form-field>
+                                <mat-label>Select option</mat-label>
+                                <mat-select formControlName="id">
+                                    <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name |
+                                        uppercase
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div><!-- end -->
+                        <!-- year -->
+                        <div class="mb-2">
+                            <mat-form-field>
+                                <mat-label>School year</mat-label>
+                                <input type="text" formControlName="year" [placeholder]="currentYear" matInput>
+                            </mat-form-field>
+                        </div><!-- end -->
+                    </div>
+                </div>
+                <div class="row">
                     <div class="mb-2">
-                        <mat-form-field>
-                            <mat-label>Select Exam Type</mat-label>
-                            <mat-select formControlName="assessmentType">
-                                <mat-option value="EXAM">Exam</mat-option>
-                                <mat-option value="PROJECT">Project</mat-option>
-                                <mat-option value="ASSIGNMENT">Assignment</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div><!-- end -->
-
-                    <!-- submit button -->
-                    <div class="mb-2">
-                        <div class="col-sm-8 d-flex justify-content-between">
-                            <!-- <button *ngIf="!(loading$ | async)" matTooltip="save" class="custorm-button" mat-flat-button
-                                color="primary" (click)="onSaveStudentAssessment()"
-                                [disabled]="!studentAssessmentForm.valid">save</button>
-                            <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Saving...
-                            </button> -->
-                            <button matTooltip="Next" class="custorm-button" mat-flat-button color="primary"  [disabled]="!studentAssessmentForm.valid"
+                        <div class="col-sm-4 d-flex justify-content-between">
+                            <button matTooltip="Next" class="custorm-button" mat-flat-button color="primary"
+                                [disabled]="!studentAssessmentForm.valid"
                                 (click)="netxSaveStudentAssessment()">Next</button>
-
-                            <button mat-flat-button color="warn" class="custorm-button"
+                            <button matTooltip="Go back" mat-flat-button color="warn" class="custorm-button"
                                 routerLink="/admin/student-assessment">Cancel</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <!-- option -->
-                    <div class="mb-2" formGroupName="option">
-                        <mat-form-field>
-                            <mat-label>Select option</mat-label>
-                            <mat-select formControlName="id">
-                                <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name |
-                                    uppercase
-                                    }}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div><!-- end -->
-                    <!-- year -->
-                    <div class="mb-2">
-                        <mat-form-field>
-                            <mat-label>School year</mat-label>
-                            <input type="text" formControlName="year" [placeholder]="currentYear" matInput>
-                        </mat-form-field>
-                    </div>
-                    <!-- end -->
-
-                </div>
             </div>
         </div>
+
     </div>
 </div>

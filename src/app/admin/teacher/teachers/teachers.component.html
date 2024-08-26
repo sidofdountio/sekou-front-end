@@ -1,17 +1,40 @@
 <div class="container">
     <h1 class="mat-1">
-        <button mat-icon-button routerLink="./" routerLinkActive="active" matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>
+        <button mat-icon-button routerLink="./" routerLinkActive="active"
+            matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>
         Teacher
     </h1>
-    <div class="row mb-3">
-    </div>
-    <div class="row">
-        <h3>Enrollment Course</h3>
-        <div class="col-lg-12 col-md-12">
-            <div class="col-md-3 d-flex justify-content-between mb-2">
-                <button matTooltip="Add new course" (click)="addTeacher()" mat-icon-button class="box-shadow">
+    <!-- 1 row -->
+    <!-- 2 row Export button and button add new planing course-->
+    <div class="row mb-2">
+        <div class="card p-2">
+            <div class="col-md-4 d-flex justify-content-between">
+                <!-- save button -->
+                <button matTooltip="Add New Teaher" (click)="addTeacher()" mat-icon-button class="box-shadow">
                     <mat-icon>person_add</mat-icon>
                 </button>
+                <!-- Excel -->
+                <button matTooltip="Export Teacher on Excel File" (click)="OnExportExcel()" mat-icon-button
+                    class="box-shadow text-bg-success">
+                    <mat-icon>description</mat-icon></button>
+                <!-- PDF -->
+                <button matTooltip="Export Tescher on PDF File" (click)="OnExportPDF()" mat-icon-button
+                    class="box-shadow text-bg-danger">
+                    <mat-icon>description</mat-icon></button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input type="text" matInput />
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-lg-12 col-md-12">
+            <div class="col-md-3 d-flex justify-content-between mb-2">
 
             </div>
             <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
@@ -23,32 +46,34 @@
                 <ng-container *ngSwitchCase="DataSate.ERROR_STATE">
                     <div class="alert alert-warning">{{ appState.error }}</div>
                 </ng-container>
-                <ng-container>
-                    <div class="mat-elevation-z8 mb-4">
-                        <table mat-table [dataSource]="dataSource" matSort>
-                            <!-- tile -->
-                            <ng-container matColumnDef="name">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                                <td mat-cell *matCellDef="let teacher">{{ teacher.firstName }} {{ teacher.lastName }}</td>
-                            </ng-container>
-                            <!-- level -->
-                            <ng-container matColumnDef="email">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-                                <td mat-cell *matCellDef="let teacher">{{ teacher.email }}</td>
-                            </ng-container>
-                            <!-- Option -->
-                            <ng-container matColumnDef="phone">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-                                <td mat-cell *matCellDef="let teacher">{{ teacher.phone  }}</td>
-                            </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
-                        </table>
-                        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
-                            aria-label="Select page of periodic elements"></mat-paginator>
-                    </div>
-                </ng-container>
+                <div class="mat-elevation-z8 mb-4">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <!-- tile -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let teacher">{{ teacher.firstName }} {{ teacher.lastName }}
+                            </td>
+                        </ng-container>
+                        <!-- level -->
+                        <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                            <td mat-cell *matCellDef="let teacher">{{ teacher.email }}</td>
+                        </ng-container>
+                        <!-- Option -->
+                        <ng-container matColumnDef="phone">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+                            <td mat-cell *matCellDef="let teacher">{{ teacher.phone }}</td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                        aria-label="Select page of periodic elements"></mat-paginator>
+                </div>
             </ng-container>
+            <div class="alert alert-info" *ngIf="dataSource.data.length  === 0">
+                <h3>No Teachers yet !</h3>
+            </div>
         </div>
     </div>
 </div>

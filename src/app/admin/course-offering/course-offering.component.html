@@ -3,41 +3,75 @@
         <button mat-icon-button routerLink="../" matTooltip="Go back">
             <mat-icon>arrow_back</mat-icon>
         </button>
-        Courses
+        Sekou/Planing Courses
     </h1>
+    <!-- 1 row -->
     <div class="row mb-3">
-        <h3 class="mat-3">Filter</h3>
-        <div class="col">
-            <mat-form-field>
-                <mat-label>Filter by option</mat-label>
-                <mat-select>
-                    <mat-option>Not yet available</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field>
-                <mat-label>Filter by Level</mat-label>
-                <mat-select>
-                    <mat-option>Not yet available</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
 
     </div>
+    <!-- 2 row Export button and button add new planing course-->
     <div class="row mb-2">
-        <div class="col">
-            <div class="col-md-3 d-flex justify-content-between mb-2">
-                <button matTooltip="Add new course" (click)="onSaveCourseOffering()" mat-icon-button class="box-shadow">
+        <div class="card p-2">
+            <div class="col-md-4 d-flex justify-content-between">
+                <button matTooltip="Scheduler new course" (click)="onSaveCourseOffering()" mat-icon-button
+                    class="box-shadow">
                     <mat-icon>add</mat-icon>
                 </button>
+                <!-- Excel -->
+                <button matTooltip="Export scheduler course on Excel File" (click)="OnExportExcel()" mat-icon-button
+                    class="box-shadow text-bg-success">
+                    <mat-icon>description</mat-icon></button>
+                <!-- PDF -->
+                <button matTooltip="Export scheduler course on PDF File" (click)="OnExportPDF()" mat-icon-button
+                    class="box-shadow text-bg-danger">
+                    <mat-icon>description</mat-icon></button>
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- 3 row filter -->
+    <div class="row mb-2">
+        <div class="card  p-4">
+            <div class="col d-flex justify-content-between">
+                <!-- Level -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Filter by Lvel</mat-label>
+                    <mat-select>
+                        <mat-option>Not yet available</mat-option>
+                    </mat-select>
+                    <mat-hint>Ex. Lvel 1, Master 1,2</mat-hint>
+                </mat-form-field>
+                <!-- Option -->
+                <mat-form-field appearance="outline">
+                    <mat-label>Filter by Option</mat-label>
+                    <mat-select>
+                        <mat-option>Not yet available</mat-option>
+                    </mat-select>
+                    <mat-hint>Ex. GSI, CGE</mat-hint>
+                </mat-form-field>
+                <!-- enter Year -->
+                <mat-form-field appearance="outline">
+                    <mat-label>School Year</mat-label>
+                    <input type="number" matInput />
+                    <mat-hint>ex. 2024</mat-hint>
+                </mat-form-field>
+                <!-- Button search -->
+                <button mat-flat-button color="primary" class="button-search">Searh</button>
+            </div>
+        </div>
+    </div><!-- end -->
+    <!-- 4 row -->
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input type="text" matInput />
+            </mat-form-field>
+        </div>
+    </div>
+    <!-- 5 row Table-->
+    <div class="row mb-2">
         <h3>Scheduler Course</h3>
         <div class="col-lg-12 col-md-12">
-
             <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
                 <ng-container *ngSwitchCase="DataSate.LOADING_STATE">
                     <div class="col-md-12 single-note-item text-center">
@@ -53,7 +87,7 @@
                             <!-- tile -->
                             <ng-container matColumnDef="startTime">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
-                                <td mat-cell *matCellDef="let cours0ffering">{{ cours0ffering.startTime  }}</td>
+                                <td mat-cell *matCellDef="let cours0ffering">{{ cours0ffering.startTime }}</td>
                             </ng-container>
                             <!-- endTime -->
                             <ng-container matColumnDef="endTime">
@@ -63,7 +97,8 @@
                             <!-- dayOfWeek -->
                             <ng-container matColumnDef="dayOfWeek">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Day</th>
-                                <td mat-cell *matCellDef="let cours0ffering">{{ cours0ffering.dayOfWeek | lowercase}}</td>
+                                <td mat-cell *matCellDef="let cours0ffering">{{ cours0ffering.dayOfWeek | lowercase}}
+                                </td>
                             </ng-container>
                             <!-- course -->
                             <ng-container matColumnDef="course">
@@ -88,7 +123,6 @@
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
                                 <td mat-cell *matCellDef="let cours0ffering">{{ cours0ffering?.year }}</td>
                             </ng-container>
-
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
                         </table>
@@ -96,6 +130,9 @@
                             aria-label="Select page of periodic elements"></mat-paginator>
                     </div>
                 </ng-container>
+                <div class="alert alert-info" *ngIf="dataSource.data.length  === 0">
+                    <h3>No Planing Course yet !</h3>
+                </div>
             </ng-container>
         </div>
     </div>

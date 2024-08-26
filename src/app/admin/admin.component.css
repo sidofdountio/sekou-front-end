@@ -6,8 +6,9 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 220px;
   background-color: #fff;
+  font-weight: bold;
 }
 
 
@@ -23,7 +24,7 @@
 }
 
 mat-icon{
-  font-size: 20px;
+  font-size: 24px;
 }
 .matListItemIcon{
   color: #333;
@@ -37,6 +38,15 @@ a{
 .custorm-icon{
   display: inline-flex;
   position: relative;
-  top: 2px;
-  margin-left: 2px;
+  top: 4px;
+  margin-right: 14px;
 }
+mat-nav-list a.active{
+  background: #ccc;
+}
+
+mat-nav-list a.hover{
+  background: green;
+}
+
+

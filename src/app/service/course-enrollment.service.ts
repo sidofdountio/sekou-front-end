@@ -36,6 +36,13 @@ export class CourseEnrollmentService {
         catchError(this.handlerError)
       );
 
+  deleteCourseEnrollement$ = (id: number) => <Observable<CustomResponse>>
+    this.http.delete<CustomResponse>(`${this.URL}/${id}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handlerError)
+      );
+
   handlerError(error: HttpErrorResponse): Observable<never> {
     throw new Error(`An error occured - Error code :${error.message}`);
   }

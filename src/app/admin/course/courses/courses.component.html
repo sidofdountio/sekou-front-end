@@ -3,55 +3,81 @@
     <button mat-icon-button routerLink="../" matTooltip="Go back">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    Courses
+    Sekou/Courses
   </h1>
   <!-- filter -->
-  <div class="row mb-3">
+  <div class="row mb-2">
     <h3 class="mat-3">Filter</h3>
-    <div class="col-lg-4 col-md-4">
-      <mat-form-field>
-        <mat-label>Filter by option</mat-label>
-        <mat-select>
-          <mat-option>Not yet available</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-lg-4 col-md-4">
-      <mat-form-field>
-        <mat-label>Filter by Level</mat-label>
-        <mat-select>
-          <mat-option>Not yet available</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <div class="card p-2">
+      <div class="col-sm-8 d-flex justify-content-between">
+        <mat-form-field>
+          <mat-label>Filter by option</mat-label>
+          <mat-select>
+            <mat-option>Not yet available</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  </div>
-  <!-- end filter -->
-  <!-- anction button -->
-  <div class="row">
-    <div class="col-md-3 d-flex justify-content-between mb-2">
-      <button matTooltip="Add new course" (click)="onSaveCourse()" mat-icon-button class="box-shadow">
-        <mat-icon>add</mat-icon>
-      </button>
-      <button matTooltip="Enroll new course" (click)="onSaveCourseEnrollment()" mat-raised-button color="primary"
-        class="">Enroll Course
-      </button>
+        <mat-form-field>
+          <mat-label>Filter by Level</mat-label>
+          <mat-select>
+            <mat-option>Not yet available</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button color="primary">Search</button>
+      </div>
     </div>
+  </div><!-- end filter -->
+  <!-- anction button -->
+  <div class="row mb-2">
+    <div class="card p-2">
+      <div class="col-sm-4 d-flex justify-content-between mb-2">
+        <button matTooltip="Enroll new course" (click)="onSaveCourseEnrollment()" mat-stroked-button color="primary"
+          class="">Enrol New Course
+        </button>
+        <button matTooltip="Add new course" (click)="onSaveCourse()" mat-icon-button class="box-shadow">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button matTooltip="Export course in Excel File" mat-icon-button class="box-shadow text-bg-success">
+          <mat-icon>description</mat-icon>
+        </button>
+        <button matTooltip="Export course in PDF File" mat-icon-button class="text-bg-danger">
+          <mat-icon>description</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- 2 row -->
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <mat-form-field>
+        <mat-label>Search </mat-label>
+        <input type="text" matInput placeholder="search" />
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- 3 row table -->
+  <div class="row mb-2 d-flext-justify-content-center">
+    <ng-container *ngIf="loading$ | async ">
+      <div class="col-md-12 single-note-item text-center">
+        <div class="spinner-border text-info" role="status"></div>
+      </div>
+    </ng-container>
   </div>
   <!-- table start -->
   <div class="row">
-    <h3>Enrollment Course</h3>
-    <div class="col-lg-12 col-md-12">
+    <div class="col-lg-12 ">
       <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
         <ng-container *ngSwitchCase="DataState.LOADING_STATE">
           <div class="col-md-12 single-note-item text-center">
             <div class="spinner-border text-info" role="status"></div>
           </div>
         </ng-container>
+        <!-- error -->
         <ng-container *ngSwitchCase="DataState.ERROR_STATE">
           <div class="alert alert-warning">{{ appState.error }}</div>
         </ng-container>
-        <ng-container>
+        <!-- table -->
+        <div>
           <div class="mat-elevation-z8 mb-4">
             <table mat-table [dataSource]="dataSource" matSort>
               <!-- tile -->
@@ -74,13 +100,23 @@
                 <th mat-header-cell *matHeaderCellDef>Credit</th>
                 <td mat-cell *matCellDef="let courseEnrollment">{{ courseEnrollment.course.credit }}</td>
               </ng-container>
+              <!-- action -->
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let courseEnrollment">
+                  <button (click)="onDetelete(courseEnrollment.id)" mat-icon-button color="accent"> <mat-icon>detete</mat-icon></button>
+                </td>
+              </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
               aria-label="Select page of periodic elements"></mat-paginator>
           </div>
-        </ng-container>
+        </div>
+        <div class="alert alert-info" *ngIf="dataSource.data.length  === 0">
+          <h3>No EnroledCourses yet !</h3>
+        </div>
       </ng-container>
     </div>
   </div>

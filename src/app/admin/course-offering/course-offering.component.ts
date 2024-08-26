@@ -25,6 +25,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./course-offering.component.css']
 })
 export class CourseOfferingComponent implements OnInit{
+OnExportPDF() {
+throw new Error('Method not implemented.');
+}
+OnExportExcel() {
+throw new Error('Method not implemented.');
+}
 
   levels: Level[];
   appState$: Observable<AppState<CustomResponse>>;

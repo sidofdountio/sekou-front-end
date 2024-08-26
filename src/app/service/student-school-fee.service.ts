@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { CustomResponse } from '../model/custom-response';
 import { Level } from '../model/level';
@@ -14,10 +14,9 @@ import { StudentSchoolFee } from '../model/student-school-fee';
 export class StudentSchoolFeeService {
 
 
-  private readonly URL: string = environment.URL + `school-fee`;
+  private readonly URL: string = environment.URL + `student-school-fee`;
 
   constructor(private http: HttpClient) { }
-
 
 
   studentSchoolFees$ = <Observable<CustomResponse>>
@@ -57,6 +56,6 @@ export class StudentSchoolFeeService {
 
 
   handlerError(error: HttpErrorResponse): Observable<never> {
-    throw new Error(`An error occured - Error code :${error.message}`);
+    throw new Error(`Error messae : ${error.message}`);
   }
 }

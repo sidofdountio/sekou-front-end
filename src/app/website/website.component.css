@@ -1,0 +1,33 @@
+.card {
+    background-image: url('/assets/96e29b9fe4bfd5b5a95431f55c960a99.jpg');
+    height: 500px;
+    background-clip: border-box;
+    background-repeat: repeat-x;
+    border-radius: 30px;
+    background-size: contain;
+}
+
+h1 {
+    color: hsl(128, 45%, 35%);
+    text-shadow: 10cap;
+    font-weight: bolder;
+    font-size: xx-large;
+    letter-spacing: 1cap;
+    font-family: sans-serif;
+}
+
+h3 {
+    color: rgb(171, 59, 47);
+    letter-spacing: 5px;
+    font-weight: 700;
+    text-shadow: 5cap;
+    text-overflow: clip;
+    text-transform: uppercase;
+}
+
+button {
+    width: 300px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}

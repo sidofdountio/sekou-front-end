@@ -21,7 +21,7 @@ export class AddStudentComponent {
     dateOfBirth:['',[Validators.required]]
   })
   constructor(private fbuilde: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: StudentRequest,
-   public dialogRef: MatDialogRef<AddStudentComponent>, private stdeuntService: StudentService) { }
+   public dialogRef: MatDialogRef<AddStudentComponent>) { }
 
   onSave() {
     let student: StudentRequest = {

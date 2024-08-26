@@ -1,88 +1,99 @@
 <div class="container">
     <div class="row">
-        <h1 class="mat-1">
-            <button mat-icon-button routerLink="../admin"
-                matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>Settings
-        </h1>
-        <p class="text-bg-info">This Page help to create or setting a lot of configuration like: Adding new Level,
-            Option,
-            Speciality and Course</p>
-
+        <div class="col">
+            <h1 class="mat-1">
+                <button mat-icon-button routerLink="../admin"
+                    matTooltip="Go back"><mat-icon>arrow_back</mat-icon></button>Settings
+            </h1>
+            <p class="text-info fw-bold">This Page help to create or setting a lot of configuration like: Adding
+                newLevel,Option,
+                Speciality and Course</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
             <button mat-icon-button (click)="enableStting()"><mat-icon>edit</mat-icon> </button>
         </div>
     </div>
-    <div class="row">
-
+    <!-- First row -->
+    <div class="row mb-2">
         <!-- speciality -->
-        <div class="col-lg-4 col-md-4">
-            <div class="form-speciality card">
-                <h3 class="mat-3 text-center">Add new speciality</h3>
-                <div class="row ">
-                    <div class="col" [formGroup]="specialityForm">
-                        <div class="mb-3">
-
-                            <mat-form-field>
-                                <input type="text" matInput formControlName="name" />
-                                <mat-label>speciality name</mat-label>
-                                <mat-error>Provide speciality name</mat-error>
-                                <mat-hint>ex.Software enginner, Genie Civil</mat-hint>
-                            </mat-form-field>
-                        </div>
-                        <div class="">
-                            <button (click)="onSaveSpciality()" mat-raised-button color="accent" type="submit"
-                                [disabled]="!specialityForm.valid">Add New Speciality</button>
-                        </div>
+        <div class="col">
+            <div class="card p-2">
+                <h3 class="">Add new speciality</h3>
+                <div class="col" [formGroup]="specialityForm">
+                    <div class="mb-3">
+                        <mat-form-field appearance="outline">
+                            <input type="text" matInput formControlName="name" />
+                            <mat-label>speciality name</mat-label>
+                            <mat-error>Provide speciality name</mat-error>
+                            <mat-hint>ex.Software enginner, Genie Civil</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-2">
+                        <button (click)="onSaveSpciality()" mat-raised-button color="accent" type="submit"
+                            [disabled]="!specialityForm.valid">Add New Speciality</button>
                     </div>
                 </div>
             </div>
         </div><!-- end speciality -->
         <!-- option -->
-        <div class="col-lg-8 col-md-8">
-            <div class="form-option card">
-                <h3 class="">Add new option </h3>
+        <div class="col">
+            <div class="row" [formGroup]="optionForm">
+                <div class="card p-2">
+                    <h3>Add New option </h3>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                    <input type="text" matInput formControlName="name" />
+                                    <mat-label>Option Short Name</mat-label>
+                                    <mat-error>Provide Option Short Name</mat-error>
+                                    <mat-hint>ex. GSI, CGE, TP, BANQUE</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                    <input type="text" matInput formControlName="fullName" />
+                                    <mat-label>Option Full Name</mat-label>
+                                    <mat-error>Provide Option Full Name</mat-error>
+                                    <mat-hint>ex. Gestion Des System d'Information</mat-hint>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col" formGroupName="speciality">
+                            <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Select Speciality</mat-label>
+                                    <mat-select formControlName="id">
+                                        <mat-option *ngFor="let specialty of specialitys" [value]="specialty.id"> {{
+                                            specialty.name }}</mat-option>
+                                    </mat-select>
+                                    <mat-error>You must select a speciality</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-2">
+                                <button (click)="onSaveOption()" mat-raised-button color="accent" type="submit"
+                                    [disabled]="!optionForm.valid">Add New Option</button>
+                            </div>
 
-                <div class="row" [formGroup]="optionForm">
-                    <div class="col">
-                        <div class="mb-3 ">
-                            <mat-form-field>
-                                <input type="text" matInput formControlName="name" />
-                                <mat-label>Option name</mat-label>
-                                <mat-error>Provide option name</mat-error>
-                                <mat-hint>ex. GSI, CGE, TP, BANQUE</mat-hint>
-                            </mat-form-field>
                         </div>
                     </div>
-                    <div class="col" formGroupName="speciality">
 
-                        <mat-form-field>
-                            <mat-label>Select Speciality</mat-label>
-                            <mat-select formControlName="id">
-                                <mat-option *ngFor="let specialty of specialitys" [value]="specialty.id"> {{
-                                    specialty.name }}</mat-option>
-                            </mat-select>
-                            <mat-error>You must select a speciality</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="">
-                        <button (click)="onSaveOption()" mat-raised-button color="accent" type="submit"
-                            [disabled]="!optionForm.valid">Add New Option</button>
-                    </div>
                 </div>
             </div>
         </div>
     </div> <!-- End Option  -->
-    <div class="row">
+    <!-- Second row -->
+    <div class="row mb-2">
         <!-- level -->
-        <div class="col-lg-4 col-md-4">
-            <div class="form-level card">
-                <h3 class="mat-3">Add New Level</h3>
-                <div class="row ">
+        <div class="col">
+            <div class="card p-2">
+                <h3 class="">Add New Level</h3>
+                <div class="row">
                     <div class="col" [formGroup]="levelForm">
                         <div class="mb-2">
-                            <mat-form-field>
+                            <mat-form-field appearance="outline">
                                 <input type="text" matInput formControlName="name">
                                 <mat-label>Level name</mat-label>
                                 <mat-hint>ex. Level 1, Master, Licence</mat-hint>
@@ -99,45 +110,49 @@
             </div><!-- End level -->
         </div><!-- End Level  -->
         <!-- Course  -->
-        <div class="col-lg-8 col-md-8">
-            <div class="form-course card">
-                <h3 class="mat-3">Create New Course</h3>
-                <div class="row " [formGroup]="courseForm">
-                    <div class="col">
-                        <div class="mb-2">
-                            <mat-form-field>
-                                <input matInput formControlName="title">
-                                <mat-label>Course name or Title</mat-label>
-                                <mat-hint>ex. Maths, Comptabilite General, Algo 1,2</mat-hint>
-                                <mat-error>Provide course title or name</mat-error>
-                            </mat-form-field>
+        <div class="col" [formGroup]="courseForm">
+            <div class="row">
+                <div class="card p-2">
+                    <h3 class="">Create New Course</h3>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="title">
+                                    <mat-label>Course name or Title</mat-label>
+                                    <mat-hint>ex.Maths, Comptabilite General, Algo 1</mat-hint>
+                                    <mat-error>Provide course title or name</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="mb-2">
+                                <button (click)="onSaveCourse()" mat-raised-button color="warn" type="submit"
+                                    [disabled]="!courseForm.valid">Add New
+                                    Course</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <mat-form-field>
-                                <input matInput formControlName="credit" type="number">
-                                <mat-label>Course credit</mat-label>
-                                <mat-hint>ex. 1, 2, 4</mat-hint>
-                                <mat-error>Provide course title or name</mat-error>
-                            </mat-form-field>
+                        <div class="col">
+                            <div class="mb-2">
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="credit" type="number">
+                                    <mat-label>Course credit</mat-label>
+                                    <mat-hint>ex. 1, 2, 4</mat-hint>
+                                    <mat-error>Provide course title or name</mat-error>
+                                </mat-form-field>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-2">
-                        <button (click)="onSaveCourse()" mat-raised-button color="warn" type="submit"
-                            [disabled]="!courseForm.valid">Add New
-                            Course</button>
                     </div>
                 </div>
             </div>
         </div><!-- end Course -->
-        <hr>
-        <div class="row">
+    </div>
+    <hr>
+    <div class="row mb-2">
+        <div class="card">
             <h3>Actived School Year</h3>
-            <div class="col">
-                <div class="mb-3">
-                    <mat-form-field>
-                        <input matInput type="number">
+            <div class="col" [formGroup]="schooYearForm">
+                <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                        <input matInput type="number" formControlName="year">
                         <mat-label>School Year</mat-label>
                         <mat-hint>ex. 2024, 2025</mat-hint>
                     </mat-form-field>
@@ -146,5 +161,71 @@
                     <button mat-raised-button color="accent">Valid</button>
                 </div>
             </div>
+            <div class="col">
+                <div class="mb-2">
+                    <mat-form-field appearance="outline">
+                        <input matInput type="number" formControlName="year">
+                        <mat-label>School Year</mat-label>
+                        <mat-hint>ex. 2024, 2025</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- row list of option -->
+    <div class="row mb-2">
+        <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
+            <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+                <div class="col-md-12 single-note-item text-center">
+                    <div class="spinner-border text-info" role="status"></div>
+                </div>
+            </ng-container>
+            <!-- error -->
+            <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+                <div class="alert alert-warning">{{ appState.error }}</div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+                <div class="alert alert-info" *ngIf="optionSize  === 0">
+                    <h3>No Option yet !</h3>
+                </div>
+            </ng-container>
+        </ng-container>
+        <div class="mat-elevation-z8 mb-4">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <!-- tile -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+                    <td mat-cell *matCellDef="let option">{{ option.id }}</td>
+                </ng-container>
+                <!-- level -->
+                <ng-container matColumnDef="shortName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Short Name</th>
+                    <td mat-cell *matCellDef="let option">{{ option.name | uppercase}}</td>
+                </ng-container>
+                <!-- Option -->
+                <ng-container matColumnDef="fullName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+                    <td mat-cell *matCellDef="let option">{{ option.fullName }}</td>
+                </ng-container>
+                <!-- credit -->
+                <ng-container matColumnDef="speciality">
+                    <th mat-header-cell *matHeaderCellDef>Speciality</th>
+                    <td mat-cell *matCellDef="let option">{{ option.speciality.name }}</td>
+                </ng-container>
+                <!-- action -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let option">
+                        <button (click)="onDetelete(option.id)" mat-icon-button color="accent">
+                            <mat-icon>detete</mat-icon></button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                aria-label="Select page of periodic elements"></mat-paginator>
+        </div>
+    </div>
+</div>

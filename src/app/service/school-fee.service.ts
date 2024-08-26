@@ -13,12 +13,8 @@ import { Option } from '../model/option';
   providedIn: 'root'
 })
 export class SchoolFeeService {
-
-
   private readonly URL: string = environment.URL + `school-fee`;
-
   constructor(private http: HttpClient) { }
-
   schoolFees$ = <Observable<CustomResponse>>
     this.http.get<CustomResponse>(`${this.URL}`)
       .pipe(

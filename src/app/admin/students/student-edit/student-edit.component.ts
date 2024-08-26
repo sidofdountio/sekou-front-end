@@ -29,7 +29,7 @@ export class StudentEditComponent implements OnInit {
       id: 0,
       name: ''
     },
-    gender: Gender.FEMALE,
+    gender: undefined,
     dateOfBirth: undefined
   };
   updated: boolean = false;
@@ -39,7 +39,7 @@ export class StudentEditComponent implements OnInit {
     private studentService: StudentService,
     private messageModaleService: MessageModalService,
     private router: Router,
-    private notifier:NotificationService
+    private notifier: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -49,33 +49,25 @@ export class StudentEditComponent implements OnInit {
         this.student = response.data.student
       }),
       error: (err => {
-        console.error("cannot find student with id %d", this.studentId)
+        console.error("Cannot find student with id %d", this.studentId)
       })
     })
   }
 
   onCancel(): void {
     if (!this.updated) {
-      this.messageModaleService.confirmMessage("Do you want to discard the change ?");
-      let allowChange: boolean = false;
-      allowChange = this.messageModaleService.alownChange;
+      this.messageModaleService.confirmMessage("Do you want to discase the change ?");
       this.messageModaleService.checkDiscaseValueAfterCloseModale$().subscribe(
         {
           next: response => {
-            console.log(response)
             if (response) {
-              console.log("Allow", response);
               this.messageModaleService.updateValue();
-              this.router.navigate(["admin/students"])
-
+              this.router.navigate(["admin/students"]);
             } else {
-              console.log("Not allown", allowChange);
             }
           }
         }
       )
-
-      console.log("final", allowChange)
     }
   }
 

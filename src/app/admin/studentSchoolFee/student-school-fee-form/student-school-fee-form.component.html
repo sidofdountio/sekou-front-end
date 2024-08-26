@@ -1,0 +1,84 @@
+<h3 mat-dialog-title>Save Student Schoo Fee</h3>
+<mat-dialog-content [formGroup]="studentSchoolFeeForm">
+    <div class="row">
+        <div class="col">
+            <!-- payment mode -->
+            <div class="mb-2">
+                <div> <label>How Student want to pay</label></div>
+                <mat-radio-group aria-label="example-radio-group-label" formControlName="paymentMode" matTooltip="Please select one of these option"
+                    (change)="onChange($event)" required="true" >
+                    <mat-radio-button [value]="1">One Time</mat-radio-button>
+                    <mat-radio-button [value]="2">Multiply Time</mat-radio-button>
+                </mat-radio-group>
+            </div><!-- end -->
+        </div>
+    </div>
+    <div class="row" >
+        <!-- First col -->
+        <div class="col">
+            <!-- level -->
+            <div class="mb-2" formGroupName="level">
+                <mat-form-field>
+                    <mat-label>Select Level</mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- option -->
+            <div class="mb-2" formGroupName="option">
+                <mat-form-field>
+                    <mat-label>Select option</mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name |
+                            uppercase}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div><!-- end -->
+            <div class="mb-2">
+                <!-- Year school -->
+                <mat-form-field>
+                    <mat-label>Year School</mat-label>
+                    <input type="number" matInput formControlName="endYear" [placeholder]="currentYear" />
+                    <mat-error>Valid number year</mat-error>
+                    <mat-hint>eg. {{currentYear }}, 2026</mat-hint>
+                </mat-form-field>
+            </div><!-- end year school -->
+        </div>
+        <!-- second col -->
+        <div class="col">
+            <div class="mb-2">
+                <!-- register fee -->
+                <mat-form-field>
+                    <mat-label>First Pay</mat-label>
+                    <input  type="number" matInput formControlName="firstPay" />
+                    <mat-error>Valid number please</mat-error>
+                </mat-form-field>
+            </div><!-- end first fee -->
+            <!-- start second pay -->
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>Second Pay</mat-label>
+                    <input type="number" matInput formControlName="secondPay">
+                    <mat-error>Valid number please</mat-error>
+                </mat-form-field>
+            </div><!-- end secondpay -->
+            <!-- start second pay -->
+            <div class="mb-2">
+                <mat-form-field>
+                    <mat-label>schoolFeeTotal</mat-label>
+                    <input type="number" matInput formControlName="schoolFeeTotal">
+                    <mat-error>Valid number please</mat-error>
+                </mat-form-field>
+            </div><!-- end secondpay -->
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="warn" (click)="onClose()">Close</button>&nbsp;
+    <button *ngIf="!(loading$ | async)" mat-flat-button [disabled]="!studentSchoolFeeForm.valid" color="primary" (click)="onSave()">Save</button>
+    <button *ngIf="loading$ | async" class="btn btn-primary " type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Saving...
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,37 @@
+<div class="caontainer mt-4">
+    <div class="px-4">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+        <div class="row d-flex justify-content-center ">
+            <div class="col-md-6">
+                <h3 class="text-uppercase text-info">Informations</h3>
+                <div class="row" [formGroup]="schooYearForm">
+                    <div class="col">
+                        <div class="mb-2">
+                            <label for="form-label" class="form-label">School Year</label>
+                            <input type="month" formControlName="schoolYear" id="" class="form-control" placeholder="ex. 2025" required >
+                        </div>
+                        <div class="mb-2">
+                            <label for="form-label" class="form-label">Short Name</label>
+                            <input type="month" formControlName="shortName"  class="form-control" placeholder="ISH" required>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between ">
+                            <button  mat-flat-button color="accent" class="text-uppercase" routerLink="/admin">SKIP</button>
+                            <button (click)="onSubmit()" [disabled]="!schooYearForm.valid" mat-flat-button class="text-uppercase box-shadow">Save</button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-2">
+                            <label for="form-label" class="form-label">School Name</label>
+                            <input type="month" formControlName="schoolName" id="" class="form-control" placeholder="Institut Superieur Hintel" required>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

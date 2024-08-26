@@ -21,7 +21,14 @@ import {  map, startWith, catchError } from 'rxjs/operators';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit, AfterViewInit {
-
+OnExportPDF() {
+throw new Error('Method not implemented.');
+}
+OnExportExcel() {
+throw new Error('Method not implemented.');
+}
+  isLoading = new BehaviorSubject<boolean>(false);
+  loading$ = this.isLoading.asObservable();
   // Object
   students: Student[] = [];
   readonly DataSate = DataState;
@@ -70,7 +77,6 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     this.dialog.open(AddStudentComponent, dialogConf).afterClosed()
       .subscribe(
         (response: StudentRequest) => {
-
           if(response != undefined){
             this.saveStudent(response);
           }
@@ -79,14 +85,17 @@ export class StudentListComponent implements OnInit, AfterViewInit {
   }
 
   saveStudent(student:StudentRequest) {
+    this.isLoading.next(true);
     this.studentService.saveStudent$(student).subscribe(
       {
         next: (response)=>{
+          this.isLoading.next(false);
           this.notificationService.onSuccess(response.message);
             this.notificationService.onWarning("Next Step finish add student details and fee.");
             this.appState$.subscribe();
         },
         error: (error: any)=>{
+          this.isLoading.next(false);
           this.notificationService.onWarning("Can't save action ");
         }
       }

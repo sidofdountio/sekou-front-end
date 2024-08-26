@@ -23,17 +23,18 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-
 /**
  * This manage List of enrolled course. Not list of course.
  */
 export class CoursesComponent implements OnInit, AfterViewInit {
 
+  isLoading = new BehaviorSubject<boolean>(false);
+  loading$ = this.isLoading.asObservable();
   appState$: Observable<AppState<CustomResponse>>;
   private dataSubject: BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null);
   readonly DataState = DataState;
   dataSource = new MatTableDataSource<CourseEnrollment>([]);
-  displayedColumns: string[] = ['title', 'option', 'level', 'credit'];
+  displayedColumns: string[] = ['title', 'option', 'level', 'credit', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -60,7 +61,6 @@ export class CoursesComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator
   }
-
   /**
    * Triger dialog componnent to fell @param CourseEnrollment
    */
@@ -79,14 +79,28 @@ export class CoursesComponent implements OnInit, AfterViewInit {
       }, () => { });
   }
 
+  onDetelete(id: number) {
+    this.courseEnrollmentService.deleteCourseEnrollement$(id).subscribe({
+      next: (response => {
+        this.notificationService.onSuccess(response.message)
+      }),
+      error: (err => {
+        console.warn(err);
+        this.notificationService.onError("Cannot delete")
+      })
+    })
+  }
   saveCourseEnrollment(enrollmentCourse: CourseEnrollment) {
+    this.isLoading.next(true);
     this.courseEnrollmentService.saveCourseEnrollement$(enrollmentCourse).subscribe(
       {
         next: (response) => {
+          this.isLoading.next(false);
           this.appState$.subscribe();
           this.notificationService.onSuccess(response.message);
         },
         error: (error: HttpErrorResponse) => {
+          this.isLoading.next(false);
           this.notificationService.onError("Cannot save error " + error)
         }
       }
@@ -96,5 +110,5 @@ export class CoursesComponent implements OnInit, AfterViewInit {
   onSaveCourse() {
     alert("Not yet available !");
   }
- 
+
 }

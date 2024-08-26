@@ -19,4 +19,17 @@ td:hover{
     transition: none;
 }
 
+.card{
+    border: 1px solid #ccc;
+}
+mat-form-field{
+    width: 300px;
+   
+}
+.button-search{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+}
+
   

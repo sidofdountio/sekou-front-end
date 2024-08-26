@@ -3,13 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WebsiteComponent } from './website/website.component';
 import {MobileComponent} from "./mobile/mobile.component";
+import { AddSchoolComponent } from './website/school/add-school/add-school.component';
 
 const routes: Routes = [
+  {
+    component: AddSchoolComponent,
+    path: 'add-new-school',
+    title: 'Add-new-school'
+  },
   {
     component: MobileComponent,
     path: 'online-registration',
     title: 'online-registration'
-
   },
   {
     path: 'home',

@@ -29,17 +29,14 @@ import { MatListModule } from '@angular/material/list';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { SettingComponent } from './setting/setting.component';
 import { CoursesComponent } from './course/courses/courses.component';
-import { AddCoursesComponent } from './course/add-courses/add-courses.component';
 import { EnrollmentCoursesComponent } from './course/enrollment-courses/enrollment-courses.component';
 import { StudentListComponent } from './students/student-list/student-list.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { StudentPrfileComponent } from './students/student-prfile/student-prfile.component';
-import { RegisteStudentComponent } from './students/registe-student/registe-student.component';
 import { StudentRegisteListComponent } from './students/student-registe-list/student-registe-list.component';
 import { StudentTreeComponent } from './students/student-tree/student-tree.component';
 import { AddStudentComponent } from './students/add-student/add-student.component';
 import {MatCardModule} from '@angular/material/card';
-import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component';
 import { CourseOfferingComponent } from './course-offering/course-offering.component';
 import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
 import { TeachersComponent } from './teacher/teachers/teachers.component';
@@ -59,20 +56,21 @@ import { SchoolFeeEditComponent } from './schoolFee/school-fee-edit/school-fee-e
 import { StudentSchoolFeeListComponent } from './studentSchoolFee/student-school-fee-list/student-school-fee-list.component';
 import { StudentSchoolFeeAddComponent } from './studentSchoolFee/student-school-fee-add/student-school-fee-add.component';
 import { StudentSchoolFeeEditComponent } from './studentSchoolFee/student-school-fee-edit/student-school-fee-edit.component';
-
+import { StudentSchoolFeeFormComponent } from './studentSchoolFee/student-school-fee-form/student-school-fee-form.component';
+import { CustomPipe } from 'custorm.pipe';
+import { RegisterStudent2Component } from './students/register-student-2/register-student-2.component';
 
 @NgModule({
   declarations: [
+    
     AdminComponent,
     DashbordComponent,
     SettingComponent,
     CoursesComponent,
-    AddCoursesComponent,
     EnrollmentCoursesComponent,
     StudentListComponent,
     StudentEditComponent,
     StudentPrfileComponent,
-    RegisteStudentComponent,
     StudentRegisteListComponent,
     StudentTreeComponent,
     AddStudentComponent,
@@ -95,10 +93,13 @@ import { StudentSchoolFeeEditComponent } from './studentSchoolFee/student-school
     SchoolFeeEditComponent,
     StudentSchoolFeeListComponent,
     StudentSchoolFeeAddComponent,
-    StudentSchoolFeeEditComponent
+    StudentSchoolFeeEditComponent,
+    StudentSchoolFeeFormComponent,
+    CustomPipe
 
   ],
   imports: [
+    MatRadioModule,
     MatCardModule,
     MatMenuModule,
     MatTreeModule,

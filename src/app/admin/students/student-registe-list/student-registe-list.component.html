@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="mat-1">
+  <h1 class="">
     <button mat-icon-button routerLink="../students" matTooltip="Go back"> <mat-icon>arrow_back</mat-icon></button>
     Registed Students
   </h1>
@@ -8,24 +8,21 @@
   </div>
   <div class="row">
     <h3>Registed Students</h3>
-    <div class="row">
-      <div class="col-md-12">
-        <div class=" d-flex justify-content-between mb-2">
-          <button matTooltip="Register Student" (click)="OnRegister()" mat-icon-button color="warn" class="box-shadow">
-            <mat-icon>person_add</mat-icon></button>
-
-          <button matTooltip="Export register Student" (click)="OnExport()" mat-icon-button c
-            class="box-shadow text-bg-success"> <mat-icon>description</mat-icon></button>
-          <span class="">Student number 1</span>
-
-          <span>Student Option</span>
-          <span>Student Mal</span>
+    <div class="row mb-2">
+      <div class="col-sm-4">
+        <div class="d-flex justify-content-between ">
+          <!-- Excel -->
+          <button matTooltip="Export register Student on Excel File" (click)="OnExport()" mat-icon-button
+            class="box-shadow text-bg-success">
+            <mat-icon>description</mat-icon></button>
+            <!-- PDF -->
+            <button matTooltip="Export register Student On PDF File" (click)="OnExport()" mat-icon-button
+            class="box-shadow text-bg-danger">
+            <mat-icon>description</mat-icon></button>
         </div>
       </div>
     </div>
-
     <div class="col-lg-12 col-md-12">
-
       <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
         <ng-container *ngSwitchCase="DataState.LOADING_STATE">
           <div class="col-md-12 single-note-item text-center">
@@ -35,23 +32,19 @@
         <ng-container *ngSwitchCase="DataState.ERROR_STATE">
           <div class="alert alert-warning">{{ appState.error }}</div>
         </ng-container>
-
         <ng-container>
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
-
               <!-- last -->
               <ng-container matColumnDef="lastName">
                 <th mat-header-cell *matHeaderCellDef>Last Name</th>
                 <td mat-cell *matCellDef="let register">{{ register.student.lastName }}</td>
               </ng-container>
-
               <!-- first -->
               <ng-container matColumnDef="firstName">
                 <th mat-header-cell *matHeaderCellDef>First Name</th>
                 <td mat-cell *matCellDef="let register">{{ register.student?.firstName }}</td>
               </ng-container>
-
               <!-- email -->
               <ng-container matColumnDef="valid">
                 <th mat-header-cell *matHeaderCellDef>Status</th>
@@ -67,7 +60,6 @@
                 <th mat-header-cell *matHeaderCellDef>Level</th>
                 <td mat-cell *matCellDef="let register">{{ register?.student?.level?.name }}</td>
               </ng-container>
-
               <!-- option -->
               <ng-container matColumnDef="option">
                 <th mat-header-cell *matHeaderCellDef>Option</th>
@@ -76,9 +68,9 @@
               </ng-container>
               <ng-container matColumnDef="feeRegister">
                 <th mat-header-cell *matHeaderCellDef>Fee</th>
-                <td class="number" mat-cell *matCellDef="let register"> {{ register?.feeRegister | currency}}</td>
+                <td class="number" mat-cell *matCellDef="let register"> {{ register?.feeRegister | localCurrency}}</td>
               </ng-container>
-
+              <!-- Action -->
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Actions</th>
                 <td mat-cell *matCellDef="let student">
@@ -101,8 +93,10 @@
               aria-label="Select page of periodic elements"></mat-paginator>
           </div>
         </ng-container>
+        <div class="alert alert-info" *ngIf="dataSource.data.length  === 0">
+          <h3>No Student yet !</h3>
+        </div>
       </ng-container>
-
     </div>
   </div>
 </div>

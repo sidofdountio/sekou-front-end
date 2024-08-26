@@ -19,6 +19,12 @@ import { Teacher } from 'src/app/model/teacher';
   styleUrls: ['./teachers.component.css']
 })
 export class TeachersComponent {
+OnExportPDF() {
+throw new Error('Method not implemented.');
+}
+OnExportExcel() {
+throw new Error('Method not implemented.');
+}
 
   appState$: Observable<AppState<CustomResponse>>;
   readonly DataSate = DataState;

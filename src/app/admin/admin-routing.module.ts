@@ -8,7 +8,6 @@ import { StudentListComponent } from './students/student-list/student-list.compo
 import { StudentRegisteListComponent } from './students/student-registe-list/student-registe-list.component';
 import { StudentPrfileComponent } from './students/student-prfile/student-prfile.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
-import { RegisterStudent2Component } from './student/register-student-2/register-student-2.component';
 import { CourseOfferingComponent } from './course-offering/course-offering.component';
 import { SchedulerCourseOfferingComponent } from './course-offering/scheduler-course-offering/scheduler-course-offering.component';
 import { TeachersComponent } from './teacher/teachers/teachers.component';
@@ -21,6 +20,8 @@ import { StudentAssessmentComponent } from './student-assessment-list/student-as
 import { SaveStudentAssessmentComponent } from './student-assessment-list/save-student-assessment/save-student-assessment.component';
 import { SchoolFeeListComponent } from './schoolFee/school-fee-list/school-fee-list.component';
 import { StudentSchoolFeeListComponent } from './studentSchoolFee/student-school-fee-list/student-school-fee-list.component';
+import { StudentSchoolFeeAddComponent } from './studentSchoolFee/student-school-fee-add/student-school-fee-add.component';
+import { RegisterStudent2Component } from './students/register-student-2/register-student-2.component';
 
 const routes: Routes = [
   {
@@ -88,7 +89,7 @@ const routes: Routes = [
           {
             path: 'student-registed-list',
             component: StudentRegisteListComponent,
-            title: 'student-registed'
+            title: 'student-registed-list'
           },
           {
             path: 'student-profile/:id',
@@ -129,6 +130,11 @@ const routes: Routes = [
             path: 'student-school-fee',
             component: StudentSchoolFeeListComponent,
             title: 'Student-School-Fee'
+          },
+          {
+            path: 'save-student-school-fee',
+            component: StudentSchoolFeeAddComponent,
+            title: 'Save-student-school-fee'
           },
         ]
       }
